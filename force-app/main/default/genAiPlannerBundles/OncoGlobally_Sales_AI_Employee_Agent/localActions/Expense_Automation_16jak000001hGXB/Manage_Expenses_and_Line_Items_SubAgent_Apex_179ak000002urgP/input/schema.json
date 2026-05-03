@@ -1,0 +1,62 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "expenseId" : {
+      "title" : "expenseId",
+      "description" : "expense Id if to create line items separately",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "expenseName" : {
+      "title" : "expenseName",
+      "description" : "expense name",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "expenseType" : {
+      "title" : "expenseType",
+      "description" : "expense type",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "lineItems" : {
+      "title" : "lineItems",
+      "description" : "line items",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "receiptNumber" : {
+      "title" : "receiptNumber",
+      "description" : "receipt number",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "totalAmount" : {
+      "title" : "totalAmount",
+      "description" : "total amount",
+      "lightning:type" : "lightning__numberType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "transactionDate" : {
+      "title" : "transactionDate",
+      "description" : "transaction date",
+      "lightning:type" : "lightning__dateType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "vendorStoreName" : {
+      "title" : "vendorStoreName",
+      "description" : "vendor name",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

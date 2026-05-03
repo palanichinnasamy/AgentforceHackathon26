@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DisposalSiteType</fullName>
+    <inlineHelpText>Select the type of disposal site. Select Offsite to indicate that the emissions from waste disposal are scope 3 emissions and Onsite to indicate that they are scope 1 emissions.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

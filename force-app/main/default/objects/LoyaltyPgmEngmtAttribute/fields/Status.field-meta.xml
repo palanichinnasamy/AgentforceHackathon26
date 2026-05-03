@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status</fullName>
+    <inlineHelpText>Create an engagement attribute in the Draft status. After you&apos;ve created the attribute, you can move it to the Active or Inactive status. You can only extend the end date of an active or inactive attribute.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

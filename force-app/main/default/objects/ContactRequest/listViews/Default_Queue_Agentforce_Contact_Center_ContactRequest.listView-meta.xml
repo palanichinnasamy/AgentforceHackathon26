@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Default_Queue_Agentforce_Contact_Center_ContactRequest</fullName>
+    <filterScope>Queue</filterScope>
+    <label>Default Queue Agentforce Contact Center</label>
+    <queue>Default_Queue_Agentforce_Contact_Center</queue>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

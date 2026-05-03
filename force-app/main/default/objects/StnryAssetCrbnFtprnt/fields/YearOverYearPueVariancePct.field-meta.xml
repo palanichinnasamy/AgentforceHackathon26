@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>YearOverYearPueVariancePct</fullName>
+    <inlineHelpText>Percentage difference of the data center’s power usage effectiveness between the current year’s carbon footprint and the previous year’s carbon footprint.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

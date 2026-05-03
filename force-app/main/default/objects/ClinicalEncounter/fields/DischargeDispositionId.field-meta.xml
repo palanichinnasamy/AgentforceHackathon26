@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DischargeDispositionId</fullName>
+    <inlineHelpText>Select the system-defined code that represents the patient&apos;s status or state in the context of the discharge.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

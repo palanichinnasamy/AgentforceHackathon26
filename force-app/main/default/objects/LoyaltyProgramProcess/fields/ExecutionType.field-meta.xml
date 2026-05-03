@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ExecutionType</fullName>
+    <inlineHelpText>Determines how transaction journals are processed. If Real Time is selected, incoming transactions are processed as soon as they are created. If Batch is selected, the Run Program Process for Transaction Journal action in Flows is used to schedule when pending transaction journals are processed.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

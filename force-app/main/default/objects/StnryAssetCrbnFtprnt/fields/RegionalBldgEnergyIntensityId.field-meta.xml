@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RegionalBldgEnergyIntensityId</fullName>
+    <inlineHelpText>Specify the building energy intensity record containing the standard building energy intensity data from a government source.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

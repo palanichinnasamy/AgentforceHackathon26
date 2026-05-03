@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HaulLength</fullName>
+    <inlineHelpText>The haul length that’s determined based on the segment distance and the haul length defined for the associated emissions factor record.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

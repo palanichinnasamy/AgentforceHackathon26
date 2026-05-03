@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TargetYearEmissionsIntensity</fullName>
+    <inlineHelpText>Enter the emissions intensity in the target year or use the emissions intensity value from the Science Based Targets initiative tool. This value is usually the emissions per dollar value added or per unit of economic activity. The unit of economic activity is the unit of production in the target year.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

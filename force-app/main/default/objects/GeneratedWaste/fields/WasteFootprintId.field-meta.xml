@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WasteFootprintId</fullName>
+    <inlineHelpText>The relevant waste footprint record is automatically populated when the values for energy use record start date, end date, and source are entered. Or, a new waste footprint record is automatically created when there are no waste footprints for the calendar or fiscal year.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

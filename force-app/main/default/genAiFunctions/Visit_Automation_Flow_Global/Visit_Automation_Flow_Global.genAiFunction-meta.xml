@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Creates a Visit__c record with the provided doctor, dates, notes, and visit type. Sales Rep is set to the running user automatically. Returns the new Visit&apos;s Id and Name on success, or an error message on failure.</description>
+    <developerName>Visit_Automation_Flow_Global</developerName>
+    <invocationTarget>Visit_Automation_Flow</invocationTarget>
+    <invocationTargetType>flow</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+    <localDeveloperName>Visit_Automation_Flow_Global</localDeveloperName>
+    <masterLabel>Visit Automation Flow Global</masterLabel>
+    <progressIndicatorMessage>Logging visit</progressIndicatorMessage>
+</GenAiFunction>

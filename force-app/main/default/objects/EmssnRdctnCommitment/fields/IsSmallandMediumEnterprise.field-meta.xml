@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsSmallandMediumEnterprise</fullName>
+    <inlineHelpText>Select the checkbox if the company has fewer than 500 employees.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

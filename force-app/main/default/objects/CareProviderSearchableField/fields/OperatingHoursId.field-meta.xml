@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OperatingHoursId</fullName>
+    <inlineHelpText>The available hours for a practitioner at a facility. From Healthcare Practitioner Facility Operating Hours for the practitioner; from Account Operating Hours for the facility</inlineHelpText>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

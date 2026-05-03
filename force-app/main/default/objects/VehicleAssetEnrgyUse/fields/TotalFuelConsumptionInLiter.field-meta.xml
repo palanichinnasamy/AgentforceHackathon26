@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TotalFuelConsumptionInLiter</fullName>
+    <inlineHelpText>For a private jet, the fuel consumption and fuel consumption unit values are prioritized for calculations over the aircraft fuel economy and aircraft fuel economy unit values. For a fleet vehicle, the total fuel consumption value is the fuel consumption value converted to liters.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

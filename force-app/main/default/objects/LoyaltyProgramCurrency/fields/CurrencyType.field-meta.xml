@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CurrencyType</fullName>
+    <inlineHelpText>Select Qualifying to measure a member&apos;s engagement and assess their tier for upgrade or downgrade. You must select a loyalty tier group for the qualifying currency. Select Non-Qualifying if you want the members to earn points that can be redeemed. You must specify the expiration model, expiration interval, and expiration interval unit for the non-qualifying currency.</inlineHelpText>
+</CustomField>

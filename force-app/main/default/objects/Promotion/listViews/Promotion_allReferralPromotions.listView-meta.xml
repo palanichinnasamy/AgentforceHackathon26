@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Promotion_allReferralPromotions</fullName>
+    <columns>Name</columns>
+    <columns>StartDate</columns>
+    <columns>EndDate</columns>
+    <columns>ReferralType</columns>
+    <columns>LoyaltyProgram</columns>
+    <columns>IsActive</columns>
+    <columns>Description</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>IsReferralPromotion</field>
+        <operation>equals</operation>
+        <value>true</value>
+    </filters>
+    <label>All Referral Promotions</label>
+</ListView>

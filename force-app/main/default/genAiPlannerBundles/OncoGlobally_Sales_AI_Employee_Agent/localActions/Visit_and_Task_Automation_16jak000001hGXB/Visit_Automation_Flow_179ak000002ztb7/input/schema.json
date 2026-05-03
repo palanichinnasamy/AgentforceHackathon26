@@ -1,0 +1,49 @@
+{
+  "required" : [ "doctorId", "endDate", "startDate", "visitNotes", "visitType" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "accountId" : {
+      "title" : "accountId",
+      "description" : "The Account Id of the doctor (Person Account). This must come from the recordId of the doctor resolved in topic Instruction 2 — never invent or guess this Id.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "doctorId" : {
+      "title" : "doctorId",
+      "description" : "The Account Id of the doctor (Person Account). This must come from the recordId of the doctor resolved in topic Instruction 2 — never invent or guess this Id.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "endDate" : {
+      "title" : "endDate",
+      "description" : "The visit end date in YYYY-MM-DD format. Default to today if the user did not specify a date. If the user provided only one date, use that same date for both startDate and endDate.",
+      "lightning:type" : "lightning__dateType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "startDate" : {
+      "title" : "startDate",
+      "description" : "The visit start date in YYYY-MM-DD format. Default to today if the user did not specify a date. If the user provided only one date, use the same value for startDate and endDate.",
+      "lightning:type" : "lightning__dateType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "visitNotes" : {
+      "title" : "visitNotes",
+      "description" : "A clean, professional, third-person summary of what was discussed in the visit, generated from the user's input. Do not include first-person language.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "visitType" : {
+      "title" : "visitType",
+      "description" : "One of: Meeting, Revisit, In-Clinic, Routine Calls, Feedback Calls, Product Sampling, Relationship Building, Demonstration. Pick the closest match to the user's intent.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

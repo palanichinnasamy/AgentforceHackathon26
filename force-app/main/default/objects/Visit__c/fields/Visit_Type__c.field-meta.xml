@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Visit_Type__c</fullName>
+    <label>Visit Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Meeting</fullName>
+                <default>true</default>
+                <label>Meeting</label>
+            </value>
+            <value>
+                <fullName>Revisit</fullName>
+                <default>false</default>
+                <label>Revisit</label>
+            </value>
+            <value>
+                <fullName>In-Clinic</fullName>
+                <default>false</default>
+                <label>In-Clinic</label>
+            </value>
+            <value>
+                <fullName>Routine Calls</fullName>
+                <default>false</default>
+                <label>Routine Calls</label>
+            </value>
+            <value>
+                <fullName>Feedback Calls</fullName>
+                <default>false</default>
+                <label>Feedback Calls</label>
+            </value>
+            <value>
+                <fullName>Product Sampling</fullName>
+                <default>false</default>
+                <label>Product Sampling</label>
+            </value>
+            <value>
+                <fullName>Relationship Building</fullName>
+                <default>false</default>
+                <label>Relationship Building</label>
+            </value>
+            <value>
+                <fullName>Demonstration</fullName>
+                <default>false</default>
+                <label>Demonstration</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

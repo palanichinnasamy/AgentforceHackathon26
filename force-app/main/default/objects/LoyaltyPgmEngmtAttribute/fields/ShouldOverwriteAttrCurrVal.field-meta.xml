@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ShouldOverwriteAttrCurrVal</fullName>
+    <inlineHelpText>Select the checkbox if you want to use a single Loyalty Program Member Attribute Value record to track the member&apos;s engagement across periods. Don&apos;t select this checkbox if you want unique records to track members&apos; engagement for each period individually, and ensure that you have the historical data for each period.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

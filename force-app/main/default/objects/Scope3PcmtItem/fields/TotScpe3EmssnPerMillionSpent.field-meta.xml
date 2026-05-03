@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TotScpe3EmssnPerMillionSpent</fullName>
+    <inlineHelpText>Total scope 3 emissions per million spent that’s adjusted according to the inflation rate in the associated scope 3 procurement summary record.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

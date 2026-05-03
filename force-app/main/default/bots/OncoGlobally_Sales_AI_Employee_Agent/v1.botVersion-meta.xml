@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BotVersion xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>v1</fullName>
+    <articleAnswersGPTEnabled>false</articleAnswersGPTEnabled>
+    <botDialogs>
+        <botSteps>
+            <botMessages>
+                <message>Hi, I’m Agentforce! I use AI to search trusted sources, and more. Ask me “What else can you do?” to see how I can simplify your workday. How can I help?</message>
+                <messageIdentifier>20d38099-b5eb-4527-9d45-e02a6208e37b</messageIdentifier>
+            </botMessages>
+            <stepIdentifier>4d657c85-bf8a-417a-97f6-30d4c0566370</stepIdentifier>
+            <type>Message</type>
+        </botSteps>
+        <botSteps>
+            <stepIdentifier>f52b1588-0f5c-44c4-a65f-7a0bdc0a2928</stepIdentifier>
+            <type>Wait</type>
+        </botSteps>
+        <developerName>Welcome</developerName>
+        <isPlaceholderDialog>false</isPlaceholderDialog>
+        <label>Hi! I&apos;m your helpful bot.</label>
+        <showInFooterMenu>false</showInFooterMenu>
+    </botDialogs>
+    <botDialogs>
+        <botSteps>
+            <botMessages>
+                <message>Something went wrong. Try again.</message>
+                <messageIdentifier>fcb89a8e-2596-4c99-a7f0-6172c8963af3</messageIdentifier>
+            </botMessages>
+            <stepIdentifier>8b84d5d5-1a9b-4f4a-8012-5319cb98ba4a</stepIdentifier>
+            <type>Message</type>
+        </botSteps>
+        <botSteps>
+            <stepIdentifier>c6db1db8-4c3e-480b-a4c8-711e1807c4c6</stepIdentifier>
+            <type>Wait</type>
+        </botSteps>
+        <developerName>Error_Handling</developerName>
+        <isPlaceholderDialog>false</isPlaceholderDialog>
+        <label>Unfortunately, a system error occurred. Let us start again.</label>
+        <showInFooterMenu>false</showInFooterMenu>
+    </botDialogs>
+    <botDialogs>
+        <botSteps>
+            <botMessages>
+                <message>One moment while I connect you to the next available service representative.</message>
+                <messageIdentifier>b13990cb-7644-49f0-a773-679a9aea8cd6</messageIdentifier>
+            </botMessages>
+            <stepIdentifier>6537b09c-771c-4ea8-a586-5d128e13fd42</stepIdentifier>
+            <type>Message</type>
+        </botSteps>
+        <botSteps>
+            <conversationSystemMessage>
+                <type>Transfer</type>
+            </conversationSystemMessage>
+            <stepIdentifier>cf1d9837-aa8f-436f-a6ff-346e5b701c8a</stepIdentifier>
+            <type>SystemMessage</type>
+        </botSteps>
+        <developerName>Transfer_To_Agent</developerName>
+        <isPlaceholderDialog>false</isPlaceholderDialog>
+        <label>Transfer To Agent</label>
+        <showInFooterMenu>false</showInFooterMenu>
+    </botDialogs>
+    <citationsEnabled>false</citationsEnabled>
+    <company>OncoGlobally is a leading cancer care network in India with multiple hospitals and a large patient base. The sales executives who visit doctors and clinics to build relationships and share information about oncology services, treatments, and events.</company>
+    <conversationDefinitionPlanners>
+        <genAiPlannerName>OncoGlobally_Sales_AI_Employee_Agent</genAiPlannerName>
+    </conversationDefinitionPlanners>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <description>Salesforce Application Name.</description>
+        <developerName>currentAppName</developerName>
+        <includeInPrompt>true</includeInPrompt>
+        <label>currentAppName</label>
+        <visibility>External</visibility>
+    </conversationVariables>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <description>The API name of the Salesforce object (such as Account or Opportunity) associated with the record the user wants to interact with. Do not use this if the user is already talking about another object in the conversation.</description>
+        <developerName>currentObjectApiName</developerName>
+        <includeInPrompt>true</includeInPrompt>
+        <label>currentObjectApiName</label>
+        <visibility>External</visibility>
+    </conversationVariables>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <description>Type of Salesforce Page.</description>
+        <developerName>currentPageType</developerName>
+        <includeInPrompt>true</includeInPrompt>
+        <label>currentPageType</label>
+        <visibility>External</visibility>
+    </conversationVariables>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <description>The ID of the record on the user&apos;s screen. It may not relate to the user&apos;s input. Only use this if the user input mentions &apos;this&apos;, &apos;current&apos;, &apos;the record&apos;, etc. If in doubt, don&apos;t use it.</description>
+        <developerName>currentRecordId</developerName>
+        <includeInPrompt>true</includeInPrompt>
+        <label>currentRecordId</label>
+        <visibility>External</visibility>
+    </conversationVariables>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <developerName>DoctorRecordId</developerName>
+        <includeInPrompt>true</includeInPrompt>
+        <label>DoctorRecordId</label>
+        <visibility>External</visibility>
+    </conversationVariables>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <developerName>expenseRecordCreated</developerName>
+        <includeInPrompt>false</includeInPrompt>
+        <label>expenseRecordCreated</label>
+        <visibility>Internal</visibility>
+    </conversationVariables>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <description>This variable may also be referred to as VerifiedCustomerId</description>
+        <developerName>VerifiedCustomerId</developerName>
+        <includeInPrompt>false</includeInPrompt>
+        <label>VerifiedCustomerId</label>
+        <visibility>Internal</visibility>
+    </conversationVariables>
+    <defaultStdObjForContactIdFltrEnabled>false</defaultStdObjForContactIdFltrEnabled>
+    <entryDialog>Welcome</entryDialog>
+    <intentDisambiguationEnabled>false</intentDisambiguationEnabled>
+    <intentV3Enabled>false</intentV3Enabled>
+    <isScriptCompatibleAgent>false</isScriptCompatibleAgent>
+    <knowledgeActionEnabled>false</knowledgeActionEnabled>
+    <knowledgeFallbackEnabled>false</knowledgeFallbackEnabled>
+    <role>You are an AI assistant for  Oncology  sales team at OncoGlobally. You analyze visit summaries entered by sales rep and create follow-up task, task and meetings in salesforce Health Cloud.</role>
+    <smallTalkEnabled>false</smallTalkEnabled>
+    <staticPromptsEnabled>false</staticPromptsEnabled>
+    <stopRecPrompts>false</stopRecPrompts>
+    <stopWelcomePrompts>false</stopWelcomePrompts>
+    <surfacesEnabled>false</surfacesEnabled>
+    <toneType>Casual</toneType>
+</BotVersion>

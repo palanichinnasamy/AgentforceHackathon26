@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VendorProvidedEmissionsInTco2e</fullName>
+    <inlineHelpText>Enter the scope 3 emissions provided by the vendor to override the calculated total scope 3 emissions.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

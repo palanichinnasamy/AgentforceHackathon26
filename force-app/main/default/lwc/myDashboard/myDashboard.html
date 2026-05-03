@@ -1,0 +1,58 @@
+<template>
+    <div class="dashboard">
+
+        <!-- ═══ Stats Grid 2x2 ═══ -->
+        <div class="stats-grid">
+            <div class="stat-card stat-green">
+                <span class="stat-number">{visitsThisWeek}</span>
+                <span class="stat-label">Visits this week</span>
+            </div>
+            <div class="stat-card stat-blue">
+                <span class="stat-number">{visitsThisMonth}</span>
+                <span class="stat-label">Visits this month</span>
+            </div>
+            <div class="stat-card stat-purple">
+                <span class="stat-number">{openTasks}</span>
+                <span class="stat-label">Open tasks</span>
+            </div>
+            <div class="stat-card stat-amber">
+                <span class="stat-number">{formattedExpense}</span>
+                <span class="stat-label">Expenses this month</span>
+            </div>
+        </div>
+
+        <!-- ═══ Quick Actions ═══ -->
+        <p class="section-label">Quick actions</p>
+        <div class="actions-grid">
+            <!-- Row 1: Visits -->
+            <button class="action-btn primary green" onclick={handleLogVisit}>
+                <svg class="btn-icon" viewBox="0 0 20 20"><line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                Log Visit
+            </button>
+            <button class="action-btn outline green" onclick={handleMyVisits}>
+                My Visits
+                <svg class="btn-icon-sm" viewBox="0 0 20 20"><path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+
+            <!-- Row 2: Expenses -->
+            <button class="action-btn primary amber" onclick={handleLogExpense}>
+                <svg class="btn-icon" viewBox="0 0 20 20"><line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                Log Expense
+            </button>
+            <button class="action-btn outline amber" onclick={handleMyExpenses}>
+                My Expenses
+                <svg class="btn-icon-sm" viewBox="0 0 20 20"><path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+
+            <!-- Row 3: Tasks -->
+            <button class="action-btn primary purple" onclick={handleNewTask}>
+                <svg class="btn-icon" viewBox="0 0 20 20"><line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                New Task
+            </button>
+            <button class="action-btn outline purple" onclick={handleAllTasks}>
+                All Tasks
+                <svg class="btn-icon-sm" viewBox="0 0 20 20"><path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+        </div>
+    </div>
+</template>

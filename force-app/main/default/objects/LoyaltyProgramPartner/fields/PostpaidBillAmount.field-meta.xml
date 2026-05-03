@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PostpaidBillAmount</fullName>
+    <inlineHelpText>The total amount of all credits minus debits for partner transactions from the partnership start date. A positive value indicates that the partner is liable to the program. A negative value indicates the program is liable to the partner.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

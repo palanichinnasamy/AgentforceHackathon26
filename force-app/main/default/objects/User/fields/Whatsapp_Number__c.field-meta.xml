@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Whatsapp_Number__c</fullName>
+    <inlineHelpText>Phone number used to identify this user when they send messages to the Onco Field Agent via WhatsApp. Must be in E.164 format (e.g. +919876543210).</inlineHelpText>
+    <label>WhatsApp Number</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Phone</type>
+</CustomField>

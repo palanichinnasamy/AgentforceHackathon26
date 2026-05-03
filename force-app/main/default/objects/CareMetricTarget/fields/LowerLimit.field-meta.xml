@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LowerLimit</fullName>
+    <inlineHelpText>Enter the lower limit for the care metric target range. The lower limit must be less than the upper limit.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

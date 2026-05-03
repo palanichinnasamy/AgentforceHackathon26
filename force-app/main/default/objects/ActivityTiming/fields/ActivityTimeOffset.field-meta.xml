@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ActivityTimeOffset</fullName>
+    <inlineHelpText>The number of minutes before or after the activity time that the activity can be performed, if the activity time indicates an offset. For instance, if the activity should be performed 10 minutes after lunch.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

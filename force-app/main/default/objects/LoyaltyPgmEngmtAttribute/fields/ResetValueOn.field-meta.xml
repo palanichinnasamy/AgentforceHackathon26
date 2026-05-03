@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ResetValueOn</fullName>
+    <inlineHelpText>If the reset frequency is Weekly, specify the day of the week when the current value is reset. To reset the current value on a Sunday, enter 1. To reset the current value on a Saturday, enter 7. If the reset frequency is Monthly, enter a value between 1 and 31. To reset the current value on the 15th of a month, enter 15.  If the reset frequency is Yearly, enter a value between 1 and 12. To reset the current value on the first day of April month, enter 4. If the reset frequency is custom, enter the number of days after which the current value is reset.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

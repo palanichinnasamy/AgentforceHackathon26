@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type</fullName>
+    <inlineHelpText>Select the appropriate type for the care metric target value. To specify a minimum value, select MIN. To specify a maximum value, select MAX. To specify an exact value, select EXACT. To specify an upper limit and lower limit, select RANGE. To specify whether a care metric was measured, select BOOLEAN.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

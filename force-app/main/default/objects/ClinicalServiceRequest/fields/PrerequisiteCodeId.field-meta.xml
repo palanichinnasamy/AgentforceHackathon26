@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PrerequisiteCodeId</fullName>
+    <inlineHelpText>The system-defined code that represents the type of prerequisite for this service request. For instance, Episcleritis or Consanguinity. If you select a prerequisite code, then you can&apos;t select the Has prerequisites checkbox.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

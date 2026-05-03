@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Scope3EmissionSourceType</fullName>
+    <inlineHelpText>Enter the type of activity causing emissions, such as business travel.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VerificationSite</fullName>
+    <inlineHelpText>The place where the custody verification is done.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

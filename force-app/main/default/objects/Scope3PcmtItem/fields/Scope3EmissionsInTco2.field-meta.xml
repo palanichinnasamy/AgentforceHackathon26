@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Scope3EmissionsInTco2</fullName>
+    <inlineHelpText>Final scope 3 emissions value that&apos;s calculated based on the scope 3 emissions calculation type.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

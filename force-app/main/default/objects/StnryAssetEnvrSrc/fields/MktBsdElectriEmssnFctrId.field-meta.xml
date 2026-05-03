@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MktBsdElectriEmssnFctrId</fullName>
+    <inlineHelpText>The market-based emissions rate of this emissions factor is used to calculate the market-based emissions.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

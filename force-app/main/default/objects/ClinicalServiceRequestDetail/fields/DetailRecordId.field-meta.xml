@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DetailRecordId</fullName>
+    <inlineHelpText>The record with the information that you want to add to the parent service request record. For instance, if you want to add a medication request that this service request is based on, select the patient medication request record in this field, and then select Based On in the Detail Type picklist.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

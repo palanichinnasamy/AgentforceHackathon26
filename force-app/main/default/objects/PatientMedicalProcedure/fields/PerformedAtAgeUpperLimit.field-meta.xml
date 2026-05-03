@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PerformedAtAgeUpperLimit</fullName>
+    <inlineHelpText>The upper limit of the range of the patient&apos;s age when the procedure was performed. For instance, if the procedure was performed when the patient was between 20 to 22 years old, this field will say 22, and the field for the lower limit will say 20.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

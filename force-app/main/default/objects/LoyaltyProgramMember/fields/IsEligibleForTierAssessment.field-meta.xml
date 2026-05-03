@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsEligibleForTierAssessment</fullName>
+    <inlineHelpText>Indicates whether the member is eligible for tier upgrade assessment. The checkbox is selected for members with changes in qualifying point balance. If you want to assess the tier of members whose qualifying point balance hasn’t changed, set up a custom process.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

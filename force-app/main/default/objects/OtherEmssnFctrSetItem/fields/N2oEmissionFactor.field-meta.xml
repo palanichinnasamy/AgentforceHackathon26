@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>N2oEmissionFactor</fullName>
+    <inlineHelpText>Enter the N2O emissions factor for petroleum fuel sources.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

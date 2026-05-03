@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BuildingAssetType</fullName>
+    <inlineHelpText>Enter the type of stationary asset for which the building energy intensity is calculated.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

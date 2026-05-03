@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GenderRestriction</fullName>
+    <inlineHelpText>Indicates whether this facility network only applies to male or female patients or members instead of all patients or members.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+</CustomField>

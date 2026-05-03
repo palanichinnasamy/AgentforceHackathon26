@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PromotionPointFactor</fullName>
+    <inlineHelpText>Enter the multiplier that’s used to multiply the transaction amount and determine the number of points to be credited for the promotion. For example, to credit points worth twice the transaction amount, enter 2.</inlineHelpText>
+</CustomField>

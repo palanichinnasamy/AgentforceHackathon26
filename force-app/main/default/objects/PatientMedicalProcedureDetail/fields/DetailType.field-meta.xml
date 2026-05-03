@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DetailType</fullName>
+    <inlineHelpText>The type of relationship between the parent procedure record and your detail record or detail code. For Based On, select a clinical service request. For Complication Detail, select a health condition. For Part Of, select either a patient medical procedure or a care observation. For Body Site, Complication, and Follow Up, select an appropriate detail code.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+</CustomField>

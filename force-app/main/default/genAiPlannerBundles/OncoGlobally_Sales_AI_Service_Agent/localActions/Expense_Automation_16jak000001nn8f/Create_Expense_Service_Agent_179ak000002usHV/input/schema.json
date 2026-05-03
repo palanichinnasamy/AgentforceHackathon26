@@ -1,0 +1,70 @@
+{
+  "required" : [ "varExpenseAmount", "varExpenseDate", "varExpenseName" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "varExpenseAmount" : {
+      "title" : "varExpenseAmount",
+      "description" : "Amount of type number/ decimal to be stored",
+      "lightning:type" : "lightning__numberType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "varExpenseDate" : {
+      "title" : "varExpenseDate",
+      "description" : "Date format input eg: \"YYYY-MM-DD\" ",
+      "lightning:type" : "lightning__dateType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "varExpenseName" : {
+      "title" : "varExpenseName",
+      "description" : "Set this to this format based on user conversation: Expense Type + Visit Details if applicable",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "varExpenseType" : {
+      "title" : "varExpenseType",
+      "description" : "Value of String type set based on conversation",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "varFileContent" : {
+      "title" : "varFileContent",
+      "description" : "File Content",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "varFileName" : {
+      "title" : "varFileName",
+      "description" : "File Name",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "varReceiptNumber" : {
+      "title" : "varReceiptNumber",
+      "description" : "String value to show receipt number",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "varVendorName" : {
+      "title" : "varVendorName",
+      "description" : "Vendor name of the expense bill, type string",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "varVisitId" : {
+      "title" : "varVisitId",
+      "description" : "If user provides Visit details, query the Visit__c to get the record Id using query records.\nVisit number format would be: \"Visit-{xxxxxxx}\"\nUsing Query Records, query the record Id and pass it",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Audio_Transcript__c</fullName>
+    <description>Raw, unedited voice transcript captured from the field sales executive&apos;s dictation via the Visit Logger mobile component. This preserves the original speech-to-text output before AI summarization. The cleaned summary is stored in Visit Notes.</description>
+    <label>Audio Transcript</label>
+    <length>130000</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

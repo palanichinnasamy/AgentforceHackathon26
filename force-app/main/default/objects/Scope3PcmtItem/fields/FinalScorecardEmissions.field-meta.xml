@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FinalScorecardEmissions</fullName>
+    <inlineHelpText>The value is allocated from the Final Scorecard Emissions field in the related sustainability scorecard record.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

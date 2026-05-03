@@ -1,0 +1,65 @@
+<template>
+    <!-- ═══ USER MESSAGE ═══ -->
+    <template lwc:if={isUser}>
+        <div class="msg-row msg-user-row">
+            <span class="msg-name">{userName}</span>
+            <div class="msg-bubble msg-user">{message.text}</div>
+        </div>
+    </template>
+
+    <!-- ═══ AGENT MESSAGE ═══ -->
+    <template lwc:if={isAgent}>
+        <div class="msg-row msg-bot-row">
+            <span class="msg-name msg-name-bot">{agentName}</span>
+            <div class="msg-bubble msg-bot">
+                <p class="msg-text">{cleanedText}</p>
+
+                <template lwc:if={hasOptions}>
+                    <div class="opt-list">
+                        <template for:each={numberedOptions} for:item="opt">
+                            <div key={opt.number} class="opt-list-item">
+                                {opt.number}. {opt.label}
+                            </div>
+                        </template>
+                    </div>
+
+                    <div class="opt-row">
+                        <template for:each={numberedOptions} for:item="opt">
+                            <button
+                                key={opt.number}
+                                class="opt-btn"
+                                onclick={handleOptionClick}
+                                data-number={opt.number}
+                                disabled={isLocked}>
+                                {opt.number}
+                            </button>
+                        </template>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </template>
+
+    <!-- ═══ TYPING INDICATOR ═══ -->
+    <template lwc:if={isTyping}>
+        <div class="msg-row msg-bot-row">
+            <span class="msg-name msg-name-bot">{agentName}</span>
+            <div class="msg-bubble msg-bot typing">
+                <span class="typing-dot"></span>
+                <span class="typing-dot"></span>
+                <span class="typing-dot"></span>
+            </div>
+        </div>
+    </template>
+
+    <!-- ═══ SUCCESS MESSAGE ═══ -->
+    <template lwc:if={isSuccess}>
+        <div class="msg-row msg-bot-row">
+            <span class="msg-name msg-name-bot">{agentName}</span>
+            <div class="msg-bubble msg-success">
+                <span class="check-circle">✓</span>
+                <span class="success-text">{message.text}</span>
+            </div>
+        </div>
+    </template>
+</template>

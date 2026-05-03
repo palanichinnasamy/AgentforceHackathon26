@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LoyaltyProgramCurrencyId</fullName>
+    <inlineHelpText>After you select the currency for partner transactions, enter the conversion factor. Enter the accrual conversion factor if members can only accrue points for partner transactions or enter the redemption conversion factor if members can only redeem points for partner transactions. If the partner allows members to accrue and redeem points, enter both conversion factors.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

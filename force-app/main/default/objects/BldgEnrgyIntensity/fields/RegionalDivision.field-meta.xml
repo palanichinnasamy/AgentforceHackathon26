@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RegionalDivision</fullName>
+    <inlineHelpText>The regional division for this building intensity record.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

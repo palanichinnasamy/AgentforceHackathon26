@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Look up Doctor (Person Account), Facility (Business Account), or open Tasks linked to a Doctor&apos;s Account. Pass searchName for name-based lookups (Doctor, Facility) and searchId for Id-based lookups (OpenTasks). Returns up to 5 matches for name lookups, 3 most recent for OpenTasks. Returns NotFound when zero matches, TooMany when more than 5 name matches, Success otherwise.</description>
+    <developerName>Query_Records_Global</developerName>
+    <invocationTarget>QueryRecordInvocable</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+    <localDeveloperName>Query_Records_Global</localDeveloperName>
+    <masterLabel>Query Records DONT USE</masterLabel>
+    <progressIndicatorMessage>Fetching info</progressIndicatorMessage>
+</GenAiFunction>

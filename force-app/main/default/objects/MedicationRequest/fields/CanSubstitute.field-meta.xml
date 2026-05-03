@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CanSubstitute</fullName>
+    <inlineHelpText>The medication specified in this medication request can be substituted with a different medication. If you select this checkbox, you can&apos;t select a value for Allowed Substitution Type Code.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

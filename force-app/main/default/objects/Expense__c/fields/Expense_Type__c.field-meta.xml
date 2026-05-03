@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Expense_Type__c</fullName>
+    <label>Expense Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Business Meals</fullName>
+                <default>false</default>
+                <label>Business Meals</label>
+            </value>
+            <value>
+                <fullName>Conference Registration</fullName>
+                <default>false</default>
+                <label>Conference Registration</label>
+            </value>
+            <value>
+                <fullName>Educational Grants</fullName>
+                <default>false</default>
+                <label>Educational Grants</label>
+            </value>
+            <value>
+                <fullName>Educational Materials</fullName>
+                <default>false</default>
+                <label>Educational Materials</label>
+            </value>
+            <value>
+                <fullName>Lodging</fullName>
+                <default>false</default>
+                <label>Lodging</label>
+            </value>
+            <value>
+                <fullName>Mileage / Fuel</fullName>
+                <default>false</default>
+                <label>Mileage / Fuel</label>
+            </value>
+            <value>
+                <fullName>Parking &amp; Tolls</fullName>
+                <default>false</default>
+                <label>Parking &amp; Tolls</label>
+            </value>
+            <value>
+                <fullName>Product Samples</fullName>
+                <default>false</default>
+                <label>Product Samples</label>
+            </value>
+            <value>
+                <fullName>Promotional Items / Gifts</fullName>
+                <default>false</default>
+                <label>Promotional Items / Gifts</label>
+            </value>
+            <value>
+                <fullName>Public Transport</fullName>
+                <default>false</default>
+                <label>Public Transport</label>
+            </value>
+            <value>
+                <fullName>Speaker Fees / Honoraria</fullName>
+                <default>false</default>
+                <label>Speaker Fees / Honoraria</label>
+            </value>
+            <value>
+                <fullName>Sponsorships</fullName>
+                <default>false</default>
+                <label>Sponsorships</label>
+            </value>
+            <value>
+                <fullName>Doctor Meeting Expenses</fullName>
+                <default>false</default>
+                <label>Doctor Meeting Expenses</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>UpperLimit</fullName>
+    <inlineHelpText>Enter the upper limit for the care metric target range. The upper limit must be greater than the lower limit.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

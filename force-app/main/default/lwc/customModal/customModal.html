@@ -1,0 +1,65 @@
+<template>
+    <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+        class="slds-modal slds-fade-in-open">
+        <div class="modal-container slds-modal__container">
+            <!--ABOVE: Added modal-container, as the modal contents where going out of the backdrop size on the right-->
+            <button class="slds-button slds-button_icon slds-modal__close">
+                <lightning-button-icon size="large" icon-name="utility:close" alternative-text="Close!" title="Close"
+                    onclick={handleClose} variant="bare">
+                </lightning-button-icon>
+            </button>
+            <template lwc:if={headerFound}>
+                <div class="slds-modal__header">
+                    <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate" tabindex="-1">{header}</h1>
+                </div>
+            </template>
+            <template lwc:if={bodyFound}>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <template lwc:if={bodySlot}>
+                        <slot name="bodySlot"></slot>
+                    </template>
+                    <template lwc:else>
+                        {bodyContent}
+                    </template>
+                </div>
+            </template>
+            <template lwc:if={footerFound}>
+                <div class="slds-modal__footer">
+                    <template lwc:if={footerButtons}>
+                        <lightning-layout class="slds-align_absolute-center">
+                            <template for:each={footerButtons} for:item="button">
+                                <lightning-layout-item key={button.label}>
+                                    <lightning-button variant={button.variant} label={button.label}
+                                        onclick={handleClick} data-value={button.value}></lightning-button>
+                                </lightning-layout-item>
+                            </template>
+                        </lightning-layout>
+                    </template>
+                </div>
+            </template>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+</template>
+<!--<template>
+    <lightning-modal-header lwc:if={header} label={header}>
+        <template lwc:if={headerContent}>
+            {headerContent}
+        </template>
+    </lightning-modal-header>
+    <lightning-modal-body lwc:if={bodyFound}>
+        <template lwc:if={bodyContent}>
+            {bodyContent}
+        </template>
+        <template lwc:if={bodySlot}>
+            <slot name="bodySlot">
+            </slot>
+        </template>
+        <template lwc:elseif={imageContent}>
+            <img src={imageContent} alt="No Image Found" class="slds-align_absolute-center">
+        </template>
+    </lightning-modal-body>
+    <lightning-modal-footer lwc:if={footerContent}>
+        {footerContent}
+    </lightning-modal-footer>
+</template>-->

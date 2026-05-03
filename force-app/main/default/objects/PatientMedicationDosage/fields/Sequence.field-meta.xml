@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sequence</fullName>
+    <inlineHelpText>The position of this medication in the sequence of medications prescribed to a patient.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

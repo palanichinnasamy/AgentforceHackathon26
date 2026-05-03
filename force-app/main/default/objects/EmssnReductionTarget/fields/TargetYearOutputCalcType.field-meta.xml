@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TargetYearOutputCalcType</fullName>
+    <inlineHelpText>Select the measure that’s used to calculate the company’s output in the target year when the target setting method is Economic Intensity or Sectoral Decarbonization. The output can be calculated by aligning the company’s growth with its market sector or based on the company&apos;s projected activity growth in the target year.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MaximumResetCountPerPeriod</fullName>
+    <inlineHelpText>The maximum number of times the current value for the engagement attribute can be reset during a period. The member&apos;s current value is reset when they achieve the target value.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

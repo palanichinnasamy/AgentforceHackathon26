@@ -1,0 +1,136 @@
+<template>
+    <!-- Enhanced Expense Modal -->
+    <template lwc:if={showExpenseModal}>
+        <c-custom-modal header="Log Expense" body-slot onclose={handleModalClose}>
+            <div slot="bodySlot" class="modal-content">
+
+                <!-- Entry Method Selection -->
+                <p class="section-label">Choose how to log expense:</p>
+                <div class="actions-grid">
+                    <!-- File Upload as First Option -->
+                    <div class="content-section">
+                        <lightning-file-upload label="Attach expense receipt" name="expenseFileUploader"
+                            accept=".pdf,.jpg,.jpeg,.png" multiple onuploadfinished={handleUploadFinished}>
+                        </lightning-file-upload>
+                    </div>
+                    
+                    <button class="action-btn outline amber" onclick={handleSelectManual}>
+                        <svg class="btn-icon" viewBox="0 0 20 20">
+                            <path d="M3 10h14M3 6h14M3 14h14" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" />
+                        </svg>
+                        Enter Manually
+                    </button>
+                </div>
+
+                <!-- Uploaded Files Display -->
+                <template lwc:if={uploadedFiles.length}>
+                    <div class="uploaded-files">
+                        <p class="files-label">Uploaded Files:</p>
+                        <ul class="slds-list_dotted">
+                            <template for:each={uploadedFiles} for:item="file">
+                                <li key={file.documentId} class="file-item">
+                                    {file.name}
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                </template>
+
+                <!-- Action Buttons -->
+                <div class="modal-footer">
+                    <lightning-button label="Cancel" onclick={handleModalClose} class="slds-m-right_small">
+                    </lightning-button>
+                </div>
+            </div>
+        </c-custom-modal>
+    </template>
+
+    <!-- Agent Chat Modal -->
+    <template lwc:if={isModalOpen}>
+        <c-agent-chat-modal initial-utterance={pendingUtterance} persisted-session-id={agentSessionId}
+            is-agent-active={isAgentActive} onclose={handleModalClose} onsessionupdate={handleSessionUpdate}>
+        </c-agent-chat-modal>
+    </template>
+
+    <div class="dashboard">
+
+        <!-- ═══ Stats Grid 2x2 ═══ -->
+        <div class="stats-grid">
+            <div class="stat-card stat-green">
+                <span class="stat-number">{visitsThisWeek}</span>
+                <span class="stat-label">Visits this week</span>
+            </div>
+            <div class="stat-card stat-blue">
+                <span class="stat-number">{visitsThisMonth}</span>
+                <span class="stat-label">Visits this month</span>
+            </div>
+            <div class="stat-card stat-purple">
+                <span class="stat-number">{openTasks}</span>
+                <span class="stat-label">Open tasks</span>
+            </div>
+            <div class="stat-card stat-amber">
+                <span class="stat-number">{formattedExpense}</span>
+                <span class="stat-label">Expenses this month</span>
+            </div>
+        </div>
+
+        <!-- ═══ Quick Actions ═══ -->
+        <p class="section-label">Quick actions</p>
+        <div class="actions-grid">
+            <!-- Row 1: Visits -->
+            <button class="action-btn primary green" onclick={handleLogVisit}>
+                <svg class="btn-icon" viewBox="0 0 20 20">
+                    <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" />
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" />
+                </svg>
+                Log Visit
+            </button>
+            <button class="action-btn outline green" onclick={handleMyVisits}>
+                My Visits
+                <svg class="btn-icon-sm" viewBox="0 0 20 20">
+                    <path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </button>
+
+            <!-- Row 2: Expenses -->
+            <button class="action-btn primary amber" onclick={handleLogExpense}>
+                <svg class="btn-icon" viewBox="0 0 20 20">
+                    <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" />
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" />
+                </svg>
+                Log Expense
+            </button>
+            <button class="action-btn outline amber" onclick={handleMyExpenses}>
+                My Expenses
+                <svg class="btn-icon-sm" viewBox="0 0 20 20">
+                    <path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </button>
+
+            <!-- Row 3: Tasks -->
+            <button class="action-btn primary purple" onclick={handleNewTask}>
+                <svg class="btn-icon" viewBox="0 0 20 20">
+                    <line x1="10" y1="4" x2="10" y2="16" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" />
+                    <line x1="4" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" />
+                </svg>
+                New Task
+            </button>
+            <button class="action-btn outline purple" onclick={handleAllTasks}>
+                All Tasks
+                <svg class="btn-icon-sm" viewBox="0 0 20 20">
+                    <path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</template>

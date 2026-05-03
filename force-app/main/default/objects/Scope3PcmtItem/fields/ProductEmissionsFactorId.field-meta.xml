@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ProductEmissionsFactorId</fullName>
+    <inlineHelpText>Specify the Product Emissions Factor that contains the emissions factor to be applied to the procurement item for quantity based calculations.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

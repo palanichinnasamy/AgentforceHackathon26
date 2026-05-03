@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VehicleIdentifier</fullName>
+    <inlineHelpText>Enter a unique external identifier for the vehicle.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

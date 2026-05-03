@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EnergyIntensityVariancePct</fullName>
+    <inlineHelpText>Percentage difference of electricity consumption intensity between the current year and the previous year.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

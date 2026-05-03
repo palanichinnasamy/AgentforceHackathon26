@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RefrigerantEmssnFctrId</fullName>
+    <inlineHelpText>Specify the refrigerant emissions factor record that&apos;s used to calculate emissions based on the refrigerant values.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

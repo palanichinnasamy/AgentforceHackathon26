@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CareProgramId</fullName>
+    <inlineHelpText>Represents a set of activities, such as therapy, financial assistance, education, wellness, or a fitness plan, offered to participants by a healthcare provider, life sciences organization, employer or insurer.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

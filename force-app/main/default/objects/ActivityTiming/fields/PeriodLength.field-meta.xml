@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PeriodLength</fullName>
+    <inlineHelpText>The duration of the period during which the activity is repeated regularly. Use this field if you know the specific length of the activity period, but not the specific dates. For instance, if you&apos;re asked to do cardio for 10 minutes 5 times every 2 days for 3 weeks, this field would have the value 3.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

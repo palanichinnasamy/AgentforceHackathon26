@@ -1,0 +1,42 @@
+{
+  "required" : [ "objectType" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "objectType" : {
+      "title" : "Object Type",
+      "description" : "Type of record to search. Must be exactly one of: \"Doctor\" (searches Person Accounts), \"Facility\" (searches Business Accounts), or \"OpenTasks\" (returns open tasks for the running user).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "searchFacility" : {
+      "title" : "Search Facility",
+      "description" : "Optional facility filter for Doctor lookups. When provided with objectType=\"Doctor\", narrows results to doctors affiliated with this hospital or clinic via Doctor_Affiliation__c. Pass the bare facility name (e.g. \"City Care Clinic\"). Ignored for Facility and OpenTasks.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "searchId" : {
+      "title" : "Search Id",
+      "description" : "Salesforce Record Id used as a filter. For objectType=\"OpenTasks\": pass the doctor's Account Id (Person Account) to fetch tasks owned by the running user related to that doctor. Ignored for Doctor and Facility lookups.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "searchName" : {
+      "title" : "Search Name",
+      "description" : "Primary search term. For objectType=\"Doctor\": doctor's name only, with salutations like Dr./Mr./Mrs. stripped (e.g. \"Mehta\", \"Sharma\"). For objectType=\"Facility\": hospital or clinic name (e.g. \"Apollo Hospital\", \"City Care Clinic\"). NEVER concatenate facility or phone into this field. Leave blank for objectType=\"OpenTasks\".",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "searchPhone" : {
+      "title" : "Search Phone",
+      "description" : "Optional phone filter for Doctor lookups. Pass digits only (last 4 to 10) — strip \"+\", country code, spaces, dashes, parentheses before sending. Example: \"9876543210\" not \"+91 98765-43210\". Ignored for Facility and OpenTasks.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

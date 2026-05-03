@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsPointsWithFactor</fullName>
+    <inlineHelpText>Select the checkbox to calculate the points to be credited by multiplying the transaction amount with a multiplier. For example, to credit points worth twice the transaction amount, select the checkbox and enter 2 in the Points Factor field.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

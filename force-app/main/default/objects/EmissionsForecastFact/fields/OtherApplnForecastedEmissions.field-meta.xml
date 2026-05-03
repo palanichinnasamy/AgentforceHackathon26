@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OtherApplnForecastedEmissions</fullName>
+    <inlineHelpText>The emissions value that’s forecasted by an application other than Net Zero Cloud.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

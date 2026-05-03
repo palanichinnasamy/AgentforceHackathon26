@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EffectiveFrom</fullName>
+    <inlineHelpText>Date at which the provider began treating the condition</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BenefitCoverageType</fullName>
+    <inlineHelpText>Specifies the coverage status of the enrollee under both Medicare and Medicaid.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

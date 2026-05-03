@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This Prompt Template reads in the input file, which has details related to expense like: on whose name the expense is asked, who is the vendor, expense date, start/ end dates if applicable, total amount, description to be used to create an expense record</description>
+    <developerName>Document_Upload_Template_Action</developerName>
+    <invocationTarget>Document_Upload_Template</invocationTarget>
+    <invocationTargetType>generatePromptResponse</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+    <localDeveloperName>Document_Upload_Template_Action</localDeveloperName>
+    <masterLabel>Document Upload Template Action</masterLabel>
+    <progressIndicatorMessage>If you have an expense to attach, please upload it so that I can proceed with linking of expense</progressIndicatorMessage>
+</GenAiFunction>

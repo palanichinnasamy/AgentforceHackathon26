@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsRecordLocked</fullName>
+    <inlineHelpText>This record can’t be updated if the checkbox is selected. Unlock the water footprint record to update this record.</inlineHelpText>
+</CustomField>

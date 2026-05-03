@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Co2eEmissionFactorInTco2eMwh</fullName>
+    <inlineHelpText>CO2 equivalent emissions factor that&apos;s calculated from CO2, CH4, and N2O emissions factors.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

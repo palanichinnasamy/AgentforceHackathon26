@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TimeoutDuration</fullName>
+    <inlineHelpText>Enter the number of seconds for which the game’s session is active after the customer starts the game. The game can be timed out after this duration.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

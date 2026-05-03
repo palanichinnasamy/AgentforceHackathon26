@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MemberType</fullName>
+    <inlineHelpText>Individual members represent contacts, and corporate members represent accounts. Select Group to create a group of existing individual and corporate members associated with a loyalty program. Group members can contribute a percentage of their earned points to the group.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

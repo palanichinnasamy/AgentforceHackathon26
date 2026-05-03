@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>InflationRateCalculated</fullName>
+    <inlineHelpText>The inflation rate calculated based on the currency and calendar year of this procurement summary record. This rate is used to adjust emission factors.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

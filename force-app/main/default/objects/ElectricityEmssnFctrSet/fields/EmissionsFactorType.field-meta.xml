@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EmissionsFactorType</fullName>
+    <inlineHelpText>Specify how tCO2e values are calculated.
+Location-Based: The tCO2e values are calculated using the location-based emissions rates.
+Market-Based: The tCO2e values are calculated using the market-based emissions rates.
+Location and Market-Based: The tCO2e values are calculated using both the location-based and market-based emissions rates.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

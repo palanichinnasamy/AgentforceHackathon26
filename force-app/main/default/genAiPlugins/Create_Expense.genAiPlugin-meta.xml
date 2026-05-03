@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlugin xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <canEscalate>false</canEscalate>
+    <description>This topic deals with expenses that user might upload through a file (can be images, pdfs, documents). The topic would help in creating expense record with the details provided, asking the user for missing details and more.</description>
+    <developerName>Create_Expense</developerName>
+    <genAiPluginInstructions>
+        <description>First step is to analyze the file to find the following details: which place has issued the bill/ receipt, expense amount total, expense type (is to be found based on the values on the ExpenseType field on the Expense object, if none of the values match, utilize the very last one), transaction date, start and end dates.</description>
+        <developerName>instruction_0_1775657404168</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_0_1775657404168</masterLabel>
+        <sortOrder>0</sortOrder>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>If all of the above is not found, ask the user for the details, if start date isn&apos;t found (add the transaction date), if the amount is paid add the transaction date as end date, if not ask the user</description>
+        <developerName>instruction_1_1775657404174</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_1_1775657404174</masterLabel>
+        <sortOrder>0</sortOrder>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>Ask the user for the doctor/ clinic details. this will be used to populate the contact/ account lookups on the expense record</description>
+        <developerName>instruction_2_1775657404174</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_2_1775657404174</masterLabel>
+        <sortOrder>0</sortOrder>
+    </genAiPluginInstructions>
+    <language>en_US</language>
+    <localDeveloperName>Create_Expense</localDeveloperName>
+    <masterLabel>Create Expense</masterLabel>
+    <pluginType>Topic</pluginType>
+    <scope>Your job is to only create Expense object record, with the uploaded file by the user to fill in the details from the file. If details are missing, it must be asked to the user. Before creating the record, the information found is to be displayed to the user.</scope>
+</GenAiPlugin>

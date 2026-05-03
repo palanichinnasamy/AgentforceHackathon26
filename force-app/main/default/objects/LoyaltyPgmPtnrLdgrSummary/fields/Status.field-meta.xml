@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status</fullName>
+    <inlineHelpText>Indicates whether the total points of the ledger have been credited or debited from the partner. The status is Pending when points can’t be debited because the partner doesn’t have the required points balance.</inlineHelpText>
+</CustomField>

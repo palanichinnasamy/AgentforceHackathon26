@@ -1,0 +1,28 @@
+{
+  "required" : [ "objectType", "searchName" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "objectType" : {
+      "title" : "Object Type",
+      "description" : "Set to 'Visit'",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "searchId" : {
+      "title" : "Search Id",
+      "description" : "Ignore this",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "searchName" : {
+      "title" : "Search Name",
+      "description" : "Pass the Visit Name to this",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SuplScope1EmissionsInTco2e</fullName>
+    <inlineHelpText>Supplemental scope 1 emissions value that’s added to the total scope 1 emissions value.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CarbonFootprintReportDate</fullName>
+    <inlineHelpText>Select the date to include in reports and dashboards. The report date can be the reporting end date, the first day of the calendar year in the reporting year, or the current date.</inlineHelpText>
+</CustomField>

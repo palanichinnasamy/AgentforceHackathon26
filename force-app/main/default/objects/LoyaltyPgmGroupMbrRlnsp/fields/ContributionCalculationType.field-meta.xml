@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ContributionCalculationType</fullName>
+    <inlineHelpText>Indicates the method to calculate the member&apos;s point contribution to the group.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

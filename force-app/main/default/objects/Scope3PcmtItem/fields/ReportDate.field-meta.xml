@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ReportDate</fullName>
+    <inlineHelpText>Date used for inclusion in reports and dashboards. Set to the spent date, carbon footprint report end date, the first of the calendar year of the carbon footprint reporting year, or today&apos;s date.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

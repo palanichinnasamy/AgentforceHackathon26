@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MemberPlanId</fullName>
+    <inlineHelpText>The member plan that includes the benefit item being verified.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+    <type>MasterDetail</type>
+</CustomField>

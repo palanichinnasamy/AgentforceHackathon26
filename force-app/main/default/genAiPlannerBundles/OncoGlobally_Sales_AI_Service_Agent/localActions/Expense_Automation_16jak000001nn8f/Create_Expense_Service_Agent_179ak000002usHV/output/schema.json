@@ -1,0 +1,51 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "createdExpenseId" : {
+      "title" : "createdExpenseId",
+      "description" : "This is used to show clickable link once expense is created with expense Name on screen",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "errorMessageOutput" : {
+      "title" : "errorMessageOutput",
+      "description" : "Fault message in case expense wasn't created, show this in case of error",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "output" : {
+      "title" : "output",
+      "description" : "Shows if expense was created/ any error occurred",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "varContentVersionId" : {
+      "title" : "varContentVersionId",
+      "description" : "Ignore this",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "varExpenseId" : {
+      "title" : "varExpenseId",
+      "description" : "Ignore this",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

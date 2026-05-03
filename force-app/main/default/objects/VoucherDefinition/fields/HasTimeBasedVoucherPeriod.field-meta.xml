@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HasTimeBasedVoucherPeriod</fullName>
+    <inlineHelpText>Select if you want the vouchers issued by the definition to expire at a specific time. After selecting the checkbox, you can specify the effective date time and expiration date time for fixed date type vouchers. For period type vouchers, you can select an effective date time and specify the expiration period in minutes, hours, or days.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

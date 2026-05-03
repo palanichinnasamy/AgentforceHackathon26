@@ -1,0 +1,28 @@
+{
+  "required" : [ "objectType", "searchId", "searchName" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "objectType" : {
+      "title" : "Object Type",
+      "description" : "The category of record to look up. Set to 'Doctor' when searching for a doctor by name. Set to 'Facility' when searching for a hospital, clinic, or other place of service by name. Set to 'OpenTasks' to find existing open Tasks linked to a doctor's Account.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "searchId" : {
+      "title" : "Search Id",
+      "description" : "Used for OpenTasks lookups only. Pass the resolved doctor's Account Id (the recordId from a prior Doctor lookup in this same conversation). Leave blank for Doctor and Facility lookups.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "searchName" : {
+      "title" : "Search Name",
+      "description" : "Used for Doctor and Facility lookups only. Pass the raw name as the user said it — partial and salutation-tolerant matching is handled internally (e.g. \"Dr. Patel\" matches \"Vikram Patel\"). Leave blank for OpenTasks lookups.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>QuantityType</fullName>
+    <inlineHelpText>The quantity type required in this service request. If you select Range, then use the Quantity Numerator field as the lower limit of the range and the Quantity Denominator as the upper limit.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

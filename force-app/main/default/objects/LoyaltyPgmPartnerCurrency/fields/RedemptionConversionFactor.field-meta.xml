@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RedemptionConversionFactor</fullName>
+    <inlineHelpText>Enter a number that’s multiplied with the points redeemed by the member to calculate the number of points to be credited to the partner. For example, if the conversion factor is 2 and the member redeems 10 points for purchasing the partner’s products or services, 20 points are credited from the partner.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Availability</fullName>
+    <inlineHelpText>The default availability of the product to an enrollee in the context of a care program, where some products or services are available to all enrollees, and others are limited to special circumstances, or are no longer available.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+</CustomField>

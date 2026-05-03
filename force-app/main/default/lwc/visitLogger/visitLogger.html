@@ -1,0 +1,205 @@
+<template>
+    <div class="container">
+
+        <!-- ═══ STATE 1: DEFAULT ═══ -->
+        <template lwc:if={isDefaultState}>
+            <button class="record-btn" onclick={startRecording}>
+                <div class="record-btn-icon">
+                    <svg viewBox="0 0 24 24" fill="none" width="28" height="28">
+                        <rect x="9" y="2" width="6" height="12" rx="3" fill="white"/>
+                        <path d="M5 11a7 7 0 0014 0" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="12" y1="18" x2="12" y2="22" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="8" y1="22" x2="16" y2="22" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <span class="record-btn-title">Record Visit</span>
+                <span class="record-btn-sub">Tap to speak — AI will log it</span>
+            </button>
+
+            <template lwc:if={speechNotSupported}>
+                <div class="warning-banner">
+                    <lightning-icon icon-name="utility:warning" size="x-small" variant="warning"></lightning-icon>
+                    <span>Voice not available. Use manual entry instead.</span>
+                </div>
+            </template>
+        </template>
+
+        <!-- ═══ STATE 2: RECORDING ═══ -->
+        <template lwc:if={isRecording}>
+            <div class="recording-section">
+                <p class="recording-timer">● Recording {formattedTime}</p>
+
+                <div class="stop-area">
+                    <div class="pulse-ring"></div>
+                    <div class="pulse-ring pulse-delay"></div>
+                    <button class="stop-btn" onclick={stopRecording} title="Stop recording">
+                        <div class="stop-square"></div>
+                    </button>
+                </div>
+
+                <template lwc:if={transcript}>
+                    <div class="transcript-box">
+                        <p class="section-label">Live transcript</p>
+                        <p class="transcript-text">{transcript}<span class="blink">|</span></p>
+                    </div>
+                </template>
+                <template lwc:else>
+                    <p class="listening-text">Listening...</p>
+                </template>
+
+                <button class="cancel-btn" onclick={handleFinish}>Cancel</button>
+            </div>
+        </template>
+
+        <!-- ═══ STATE 3: REVIEW ═══ -->
+        <template lwc:if={isReviewState}>
+            <div class="review-section">
+
+                <div class="transcript-card">
+                    <p class="section-label">Visit transcript</p>
+                    <p class="transcript-text">{transcriptOrEmpty}</p>
+                </div>
+
+                <!-- AI SUMMARY (with edit) -->
+                <template lwc:if={isLoadingSummary}>
+                    <div class="loading-card">
+                        <lightning-spinner alternative-text="Generating summary..." size="small"></lightning-spinner>
+                        <span class="loading-text">AI is summarizing...</span>
+                    </div>
+                </template>
+                <template lwc:else>
+                    <div class="ai-summary-card">
+                        <div class="ai-header">
+                            <div class="ai-badge">AI</div>
+                            <span class="ai-title">Visit summary</span>
+
+                            <template lwc:if={canShowEditButton}>
+                                <button class="ai-action-btn"
+                                        onclick={handleEditSummary}
+                                        title="Edit summary"
+                                        disabled={isReextracting}>
+                                    <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M11.5 2.5l2 2L5 13H3v-2l8.5-8.5z"/>
+                                    </svg>
+                                    Edit
+                                </button>
+                            </template>
+                        </div>
+
+                        <template lwc:if={isEditingSummary}>
+                            <textarea class="ai-summary-edit"
+                                      oninput={handleSummaryDraftChange}
+                                      disabled={isReextracting}
+                                      rows="6"
+                                      lwc:ref="summaryEditField"></textarea>
+                            <div class="ai-edit-actions">
+                                <button class="ai-edit-btn ai-edit-cancel"
+                                        onclick={handleCancelSummary}
+                                        disabled={isReextracting}>
+                                    Cancel
+                                </button>
+                                <button class="ai-edit-btn ai-edit-save"
+                                        onclick={handleSaveSummary}
+                                        disabled={isReextracting}>
+                                    <template lwc:if={isReextracting}>
+                                        Saving...
+                                    </template>
+                                    <template lwc:else>
+                                        Save
+                                    </template>
+                                </button>
+                            </div>
+                        </template>
+                        <template lwc:else>
+                            <p class="ai-summary-text">{aiSummaryOrEmpty}</p>
+                        </template>
+                    </div>
+                </template>
+
+                <!-- SUGGESTIONS -->
+                <template lwc:if={isLoadingSuggestions}>
+                    <div class="loading-card">
+                        <lightning-spinner alternative-text="Loading suggestions..." size="small"></lightning-spinner>
+                        <span class="loading-text">Preparing suggestions...</span>
+                    </div>
+                </template>
+                <template lwc:else>
+                    <template lwc:if={hasSuggestions}>
+                        <p class="section-label">Suggested actions</p>
+                        <div class={suggestionsWrapperClass}>
+                            <template for:each={suggestions} for:item="sug">
+                                <div key={sug.id} class={sug.cardClass} onclick={handleSuggestionClick}
+                                     data-id={sug.id} data-type={sug.type}>
+                                    <div class="sug-header">
+                                        <div class={sug.iconClass}>
+                                            <template lwc:if={sug.isVisit}>
+                                                <svg viewBox="0 0 16 16" width="10" height="10"><rect x="3" y="3" width="10" height="10" rx="2" fill="currentColor"/></svg>
+                                            </template>
+                                            <template lwc:if={sug.isTask}>
+                                                <svg viewBox="0 0 16 16" width="10" height="10"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                            </template>
+                                            <template lwc:if={sug.isExpense}>
+                                                <span class="rupee-icon">₹</span>
+                                            </template>
+                                        </div>
+                                        <span class={sug.titleClass}>{sug.title}</span>
+                                        <span class="sug-arrow">tap to ask Agent →</span>
+                                    </div>
+                                    <p class="sug-desc">{sug.description}</p>
+                                    <template lwc:if={sug.hasChips}>
+                                        <div class="sug-chips">
+                                            <template for:each={sug.chips} for:item="chip">
+                                                <span key={chip.id} class={chip.cls}>{chip.label}</span>
+                                            </template>
+                                        </div>
+                                    </template>
+                                </div>
+                            </template>
+
+                            <template lwc:if={isReextracting}>
+                                <div class="suggestions-lock-overlay">
+                                    <lightning-spinner alternative-text="Refreshing..." size="small"></lightning-spinner>
+                                    <span class="loading-text">Refreshing suggestions...</span>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                </template>
+
+                <!-- Action buttons hidden when agent modal is open -->
+                <template lwc:if={showBottomActions}>
+                    <div class="bottom-actions">
+                        <button class="bottom-btn btn-record-another" onclick={handleRecordAnother}>
+                            <svg viewBox="0 0 24 24" fill="none" width="14" height="14" class="btn-icon">
+                                <rect x="9" y="2" width="6" height="12" rx="3" fill="currentColor"/>
+                                <path d="M5 11a7 7 0 0014 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+                            </svg>
+                            Record Another
+                        </button>
+                        <button class="bottom-btn btn-finish" onclick={handleFinish}>Finish</button>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <!-- Saving overlay -->
+        <template lwc:if={isSaving}>
+            <div class="saving-overlay">
+                <lightning-spinner alternative-text="Saving..." size="medium"></lightning-spinner>
+                <p class="saving-text">Saving to Salesforce...</p>
+            </div>
+        </template>
+
+        <!-- Agent chat modal -->
+        <template lwc:if={isModalOpen}>
+            <c-agent-chat-modal
+                initial-utterance={pendingUtterance}
+                persisted-session-id={agentSessionId}
+                agent-name="Field Assistant"
+                is-agent-active={isAgentActive}
+                onclose={handleModalClose}
+                onsessionupdate={handleSessionUpdate}>
+            </c-agent-chat-modal>
+        </template>
+    </div>
+</template>

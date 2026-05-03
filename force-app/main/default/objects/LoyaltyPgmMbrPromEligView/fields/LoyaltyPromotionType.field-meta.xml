@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LoyaltyPromotionType</fullName>
+    <inlineHelpText>Select Standard if the promotion rewards members immediately after they perform an activity. Select Cumulative if the promotion rewards members after they achieve a defined target value. Select Joint if the promotion is run in collaboration with one or more partners.</inlineHelpText>
+</CustomField>

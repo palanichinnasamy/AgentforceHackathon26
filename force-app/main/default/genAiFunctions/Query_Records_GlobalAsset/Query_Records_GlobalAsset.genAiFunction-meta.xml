@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Searches Salesforce for Doctor (Person Account), Facility (Business Account), or Open Tasks. For Doctor lookups, supports searching by name with optional facility name and phone number filters. Returns up to 5 matches with status (Success, NotFound, TooMany, Error), matchCount, and a list of records each containing recordId, name, displayLabel, and secondaryInfo.</description>
+    <developerName>Query_Records_GlobalAsset</developerName>
+    <invocationTarget>QueryRecordInvocable</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+    <localDeveloperName>Query_Records_GlobalAsset</localDeveloperName>
+    <masterLabel>Query Records</masterLabel>
+    <progressIndicatorMessage>Getting information</progressIndicatorMessage>
+</GenAiFunction>

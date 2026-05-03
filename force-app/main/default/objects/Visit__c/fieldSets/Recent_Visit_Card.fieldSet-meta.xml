@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FieldSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Recent_Visit_Card</fullName>
+    <description>Fields displayed on the Visit Logger mobile component&apos;s recent visit cards. Add or reorder fields here to customize what sales executives see — no LWC code change needed.</description>
+    <displayedFields>
+        <field>Doctor__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>
+    <displayedFields>
+        <field>Visit_Date__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>
+    <displayedFields>
+        <field>Visit_Type__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>
+    <displayedFields>
+        <field>Visit_Notes__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>
+    <label>Recent Visit Card</label>
+</FieldSet>

@@ -1,0 +1,35 @@
+{
+  "required" : [ "accountId", "subject" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "accountId" : {
+      "title" : "accountId",
+      "description" : "The Account Id of the doctor (Person Account). Use the doctorId resolved in topic Instruction 2 — never invent or guess this Id.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "description" : {
+      "title" : "description",
+      "description" : "Optional longer context about the task — relevant background from the visit, items to bring, points to discuss. Leave blank if the user did not provide additional detail.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "dueDate" : {
+      "title" : "dueDate",
+      "description" : "The task due date in YYYY-MM-DD format. Parse natural language like \"tomorrow\", \"next Friday\", \"in 3 days\", \"Monday\" relative to today. Leave blank if the user did not specify a date — the Flow defaults to 10 days from today.",
+      "lightning:type" : "lightning__dateType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "subject" : {
+      "title" : "subject",
+      "description" : "A short, action-oriented subject line for the task, extracted from the user's request. Examples: \"Send oncology brochure\", \"Schedule lunch meeting\", \"Follow up on referral discussion\".",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

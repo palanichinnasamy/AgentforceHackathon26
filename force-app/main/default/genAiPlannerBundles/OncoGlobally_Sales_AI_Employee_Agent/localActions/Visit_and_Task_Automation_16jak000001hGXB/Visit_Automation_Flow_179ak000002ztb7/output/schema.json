@@ -1,0 +1,51 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "errorMessage" : {
+      "title" : "errorMessage",
+      "description" : "Populated only when status is Error. Surface this text to the user when the visit could not be created.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "output" : {
+      "title" : "output",
+      "description" : "Legacy text output kept for backward compatibility. Do not use in agent responses — prefer status, visitName, and errorMessage instead.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "status" : {
+      "title" : "status",
+      "description" : "Either 'Success' or 'Error'. Drives the branching in topic Instruction 6.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "visitId" : {
+      "title" : "visitId",
+      "description" : "The Id of the newly created Visit__c record. Used to build a clickable link in the confirmation card on the Employee Agent.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "visitName" : {
+      "title" : "visitName",
+      "description" : "The auto-number Name of the new Visit__c (e.g., V-00123). Display this in the confirmation.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

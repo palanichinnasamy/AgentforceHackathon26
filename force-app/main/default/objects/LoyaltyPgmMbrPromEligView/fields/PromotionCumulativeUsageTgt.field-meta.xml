@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PromotionCumulativeUsageTgt</fullName>
+    <inlineHelpText>Enter the number of times a member must participate or the amount of money spent to qualify for a reward.</inlineHelpText>
+</CustomField>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsTargetUsedForForecasting</fullName>
+    <inlineHelpText>Select whether to use the emissions reduction target record related to this commitment record for emissions forecasting. You can only select one commitment record for forecasting. If there’s already a commitment record selected for forecasting, deselect it to select another commitment.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

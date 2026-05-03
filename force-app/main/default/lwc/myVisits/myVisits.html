@@ -1,0 +1,12 @@
+<template>
+    <div class="visits-container">
+        <c-visit-logger
+            onstatechange={handleStateChange}
+            onvisitsaved={handleVisitSaved}>
+        </c-visit-logger>
+
+        <template lwc:if={showRecentVisits}>
+            <c-recent-visits></c-recent-visits>
+        </template>
+    </div>
+</template>

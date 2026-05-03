@@ -1,0 +1,46 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "errorMessage" : {
+      "title" : "Error Message",
+      "description" : "Populated only when Status is Error. Surface this text to the user.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "matchCount" : {
+      "title" : "Match Count",
+      "description" : "Number of matching records returned. Use this with Status to determine next steps.",
+      "lightning:type" : "lightning__integerType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "records" : {
+      "title" : "Records",
+      "description" : "List of matched records. Each record has recordId, name, displayLabel, and secondaryInfo. Use displayLabel as-is when presenting options to the user. Use recordId for downstream actions (e.g. Visit Automation Flow, Task Automation Flow).",
+      "maxItems" : 2000,
+      "items" : {
+        "lightning:type" : "@apexClassType/c__QueryRecordInvocable$RecordResult"
+      },
+      "lightning:type" : "lightning__listType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "status" : {
+      "title" : "Status",
+      "description" : "One of: Success, NotFound, TooMany, Error. Drives all branching in topic instructions.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Phone__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+    ISBLANK(Phone_Number__c),
+    &quot;&quot;,
+
+    /* +1 — USA / Canada (11 digits, e.g. 12025551234 → (+1) 202-555-1234) */
+    IF(
+        AND(LEN(Phone_Number__c) = 11, LEFT(Phone_Number__c, 1) = &quot;1&quot;),
+        &quot;(+1) &quot; &amp; MID(Phone_Number__c, 2, 3) &amp; &quot;-&quot; &amp; MID(Phone_Number__c, 5, 3) &amp; &quot;-&quot; &amp; MID(Phone_Number__c, 8, 4),
+
+    /* +91 — India (12 digits) */
+    IF(
+        AND(LEN(Phone_Number__c) = 12, LEFT(Phone_Number__c, 2) = &quot;91&quot;),
+        &quot;(+91) &quot; &amp; MID(Phone_Number__c, 3, 10),
+
+    /* +44 — UK (12 digits) */
+    IF(
+        AND(LEN(Phone_Number__c) = 12, LEFT(Phone_Number__c, 2) = &quot;44&quot;),
+        &quot;(+44) &quot; &amp; MID(Phone_Number__c, 3, 10),
+
+    /* +61 — Australia (11 digits) */
+    IF(
+        AND(LEN(Phone_Number__c) = 11, LEFT(Phone_Number__c, 2) = &quot;61&quot;),
+        &quot;(+61) &quot; &amp; MID(Phone_Number__c, 3, 9),
+
+    /* +49 — Germany (12 digits, can vary 11-13) */
+    IF(
+        AND(LEN(Phone_Number__c) &gt;= 11, LEN(Phone_Number__c) &lt;= 13, LEFT(Phone_Number__c, 2) = &quot;49&quot;),
+        &quot;(+49) &quot; &amp; MID(Phone_Number__c, 3, LEN(Phone_Number__c) - 2),
+
+    /* +33 — France (11 digits) */
+    IF(
+        AND(LEN(Phone_Number__c) = 11, LEFT(Phone_Number__c, 2) = &quot;33&quot;),
+        &quot;(+33) &quot; &amp; MID(Phone_Number__c, 3, 9),
+
+    /* +81 — Japan (11-12 digits) */
+    IF(
+        AND(LEN(Phone_Number__c) &gt;= 11, LEN(Phone_Number__c) &lt;= 12, LEFT(Phone_Number__c, 2) = &quot;81&quot;),
+        &quot;(+81) &quot; &amp; MID(Phone_Number__c, 3, LEN(Phone_Number__c) - 2),
+
+    /* +86 — China (13 digits) */
+    IF(
+        AND(LEN(Phone_Number__c) = 13, LEFT(Phone_Number__c, 2) = &quot;86&quot;),
+        &quot;(+86) &quot; &amp; MID(Phone_Number__c, 3, 11),
+
+    /* +65 — Singapore (10 digits) */
+    IF(
+        AND(LEN(Phone_Number__c) = 10, LEFT(Phone_Number__c, 2) = &quot;65&quot;),
+        &quot;(+65) &quot; &amp; MID(Phone_Number__c, 3, 8),
+
+    /* +971 — UAE (12 digits) */
+    IF(
+        AND(LEN(Phone_Number__c) = 12, LEFT(Phone_Number__c, 3) = &quot;971&quot;),
+        &quot;(+971) &quot; &amp; MID(Phone_Number__c, 4, 9),
+
+    /* +966 — Saudi Arabia (12 digits) */
+    IF(
+        AND(LEN(Phone_Number__c) = 12, LEFT(Phone_Number__c, 3) = &quot;966&quot;),
+        &quot;(+966) &quot; &amp; MID(Phone_Number__c, 4, 9),
+
+    /* +880 — Bangladesh (13 digits) */
+    IF(
+        AND(LEN(Phone_Number__c) = 13, LEFT(Phone_Number__c, 3) = &quot;880&quot;),
+        &quot;(+880) &quot; &amp; MID(Phone_Number__c, 4, 10),
+
+    /* +92 — Pakistan (12 digits) */
+    IF(
+        AND(LEN(Phone_Number__c) = 12, LEFT(Phone_Number__c, 2) = &quot;92&quot;),
+        &quot;(+92) &quot; &amp; MID(Phone_Number__c, 3, 10),
+
+    /* +94 — Sri Lanka (11 digits) */
+    IF(
+        AND(LEN(Phone_Number__c) = 11, LEFT(Phone_Number__c, 2) = &quot;94&quot;),
+        &quot;(+94) &quot; &amp; MID(Phone_Number__c, 3, 9),
+
+    /* +977 — Nepal (13 digits) */
+    IF(
+        AND(LEN(Phone_Number__c) = 13, LEFT(Phone_Number__c, 3) = &quot;977&quot;),
+        &quot;(+977) &quot; &amp; MID(Phone_Number__c, 4, 10),
+
+    /* Fallback — unknown country, prepend + */
+    &quot;+&quot; &amp; Phone_Number__c
+
+    ))))))))))))))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Phone</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

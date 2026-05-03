@@ -1,0 +1,42 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "errorMessage" : {
+      "title" : "errorMessage",
+      "description" : "Populated only when status is Error. Surface this text to the user when the task could not be created.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "status" : {
+      "title" : "status",
+      "description" : "Either 'Success' or 'Error'. Drives the branching in topic Instruction 8.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "taskId" : {
+      "title" : "taskId",
+      "description" : "The Id of the newly created Task. Used to build a clickable link in the confirmation card on the Employee Agent.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "taskSubject" : {
+      "title" : "taskSubject",
+      "description" : "The subject of the created task. Display this in the confirmation.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>InflationRate</fullName>
+    <inlineHelpText>The annual inflation rate that’s used to convert currency values. This rate is calculated based on the difference in the average consumer price index between the previous year and the current year.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

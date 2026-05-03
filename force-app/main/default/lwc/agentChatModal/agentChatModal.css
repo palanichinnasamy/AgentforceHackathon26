@@ -1,0 +1,313 @@
+:host {
+    display: block;
+    --onco-green: #0B6E4F;
+    --onco-green-dark: #085041;
+    --onco-green-light: #E1F5EE;
+    --onco-red: #E24B4A;
+    --status-active: #5DCAA5;
+}
+
+/* Backdrop */
+.backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9000;
+    animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/*
+ * Bottom sheet — uses dvh for keyboard adaptation.
+ * Default: 75dvh, full-width on mobile.
+ * Full-screen variant: 100dvh.
+ * Tablet/desktop: max-width 540px, centered horizontally.
+ */
+.sheet {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 75vh;       /* fallback */
+    height: 75dvh;      /* keyboard-aware */
+    max-height: 100dvh;
+    background: #f7f7f7;
+    border-radius: 18px 18px 0 0;
+    box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.15);
+    z-index: 9001;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.25s ease-out;
+    overflow: hidden;
+    transition: height 0.25s ease-out, border-radius 0.25s ease-out;
+}
+
+/* Full-screen variant */
+.sheet-fullscreen {
+    height: 100vh;
+    height: 100dvh;
+    border-radius: 0;
+}
+
+/* Tablet+: constrain width and center */
+@media (min-width: 600px) {
+    .sheet {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        max-width: 540px;
+        width: 100%;
+        border-radius: 18px 18px 0 0;
+    }
+    .sheet-fullscreen {
+        max-width: 720px;
+        border-radius: 0;
+    }
+    @keyframes slideUp {
+        from { transform: translate(-50%, 100%); }
+        to   { transform: translate(-50%, 0); }
+    }
+}
+
+/* Mobile-only animation */
+@media (max-width: 599px) {
+    @keyframes slideUp {
+        from { transform: translateY(100%); }
+        to   { transform: translateY(0); }
+    }
+}
+
+/* Header */
+.sheet-header {
+    padding: 14px 12px 12px;
+    border-bottom: 0.5px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    border-radius: 18px 18px 0 0;
+    flex-shrink: 0;
+    transition: padding 0.25s ease-out, border-radius 0.25s ease-out;
+}
+
+/* In full-screen mode, header gets more top padding (status bar safe area) */
+.sheet-fullscreen .sheet-header {
+    padding-top: 18px;
+    border-radius: 0;
+}
+
+.sheet-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--onco-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: #fff;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.sheet-title-block {
+    flex: 1;
+    min-width: 0;
+}
+
+.sheet-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111;
+    line-height: 1.2;
+}
+
+.sheet-status {
+    font-size: 11px;
+    margin-top: 2px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-active {
+    color: var(--status-active);
+}
+
+.status-active .status-dot {
+    background: var(--status-active);
+    box-shadow: 0 0 4px rgba(93, 202, 165, 0.5);
+}
+
+.status-inactive {
+    color: #999;
+}
+
+.status-inactive .status-dot {
+    background: #bbb;
+}
+
+/* Header action buttons */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex-shrink: 0;
+}
+
+.header-btn {
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    color: #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border-radius: 6px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.15s, color 0.15s;
+}
+
+.header-btn:active {
+    transform: scale(0.92);
+}
+
+.header-btn:hover {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.header-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.sheet-close svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Messages area */
+.sheet-msgs {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 12px;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Tablet+: more horizontal padding for messages */
+@media (min-width: 600px) {
+    .sheet-msgs {
+        padding: 14px 18px;
+    }
+}
+
+/* Input bar */
+.sheet-input {
+    padding: 10px 12px 14px;
+    border-top: 0.5px solid #e0e0e0;
+    background: #fff;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+@media (min-width: 600px) {
+    .sheet-input {
+        padding: 12px 18px 16px;
+    }
+}
+
+.input-box {
+    flex: 1;
+    min-width: 0;
+    background: #f0f0f0;
+    border: none;
+    border-radius: 18px;
+    padding: 10px 14px;
+    font-size: 14px;
+    color: #111;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.input-box:focus {
+    background: #fff;
+    box-shadow: 0 0 0 1.5px var(--onco-green);
+}
+
+.input-box::placeholder {
+    color: #aaa;
+}
+
+.input-box:disabled {
+    opacity: 0.5;
+}
+
+.mic-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    cursor: pointer;
+    flex-shrink: 0;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.mic-btn:active { transform: scale(0.93); }
+.mic-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.mic-svg { width: 16px; height: 16px; }
+
+.mic-pulse {
+    position: absolute;
+    inset: -2px;
+    border: 2px solid var(--onco-red);
+    border-radius: 50%;
+    animation: micPulse 1.2s ease-out infinite;
+}
+
+@keyframes micPulse {
+    0%   { transform: scale(1);   opacity: 0.8; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+.send-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--onco-green);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.1s, background 0.15s;
+}
+
+.send-btn:active { transform: scale(0.93); }
+.send-btn:disabled { background: #ccc; cursor: not-allowed; }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AnnualEmissionsInventoryId</fullName>
+    <inlineHelpText>Select the base year’s annual emissions inventory record that’s related to the emissions reduction target.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

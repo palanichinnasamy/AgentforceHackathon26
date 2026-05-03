@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Color</fullName>
+    <inlineHelpText>For a Spin the Wheel game, enter the color code of the wheel segment that represents the game reward.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

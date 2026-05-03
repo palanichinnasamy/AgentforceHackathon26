@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DetailCodeId</fullName>
+    <inlineHelpText>The code set or code set bundle that contains the information to be added to the tracked communication record.
+ Select a detail code when the specified detail type is Category, Medium, Reason Code, or Payload.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

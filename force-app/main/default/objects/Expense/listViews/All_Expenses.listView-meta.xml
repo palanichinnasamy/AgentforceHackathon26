@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Expenses</fullName>
+    <columns>Title</columns>
+    <columns>Name</columns>
+    <columns>ExpenseType</columns>
+    <columns>Amount</columns>
+    <columns>TransactionDate</columns>
+    <columns>Description</columns>
+    <columns>ExpenseStartDate</columns>
+    <columns>ExpenseEndDate</columns>
+    <columns>Account</columns>
+    <filterScope>Everything</filterScope>
+    <label>All Expenses</label>
+</ListView>

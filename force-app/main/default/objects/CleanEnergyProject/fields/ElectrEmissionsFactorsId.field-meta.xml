@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ElectrEmissionsFactorsId</fullName>
+    <inlineHelpText>Use the electricity emissions factor to track emissions rates if the clean energy project produces any trace emissions.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

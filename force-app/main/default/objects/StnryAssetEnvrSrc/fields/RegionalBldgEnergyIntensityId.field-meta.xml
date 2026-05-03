@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RegionalBldgEnergyIntensityId</fullName>
+    <inlineHelpText>The relevant Building Energy Intensity record is automatically populated when the country is the United States, the postal code is valid, and the total building floor area is entered.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SurrogateDecisionMakerId</fullName>
+    <inlineHelpText>The authorized representative who attends the medication therapy review and makes healthcare related decisions on behalf of a cognitively impaired patient.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

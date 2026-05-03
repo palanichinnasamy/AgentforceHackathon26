@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SuplScope2MarketBasedEmssn</fullName>
+    <inlineHelpText>Supplemental scope 2 market-based emissions value that’s added to the calculated total scope 2 market-based emissions value.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

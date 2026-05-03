@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BuildingSizeCategoryId</fullName>
+    <inlineHelpText>Specify the building size category record for the stationary asset. You can add appropriate building size ranges by creating or editing building size category records.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

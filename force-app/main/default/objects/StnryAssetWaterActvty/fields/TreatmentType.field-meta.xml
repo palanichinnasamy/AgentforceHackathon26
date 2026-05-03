@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TreatmentType</fullName>
+    <inlineHelpText>Select the type of treatment when the activity type is discharge.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SuppliedEmissionsFactor</fullName>
+    <inlineHelpText>Enter the CO2 equivalent emissions factor provided by the vendor to override the CO2e emissions factor that’s calculated using the CO2, CH4, and N2O emission values.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

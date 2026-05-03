@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FnlScp1And2EmssnInTco2e</fullName>
+    <inlineHelpText>Includes the parent company&apos;s scope 1 and scope 2 emissions and the scope 1 and scope 2 emissions from the subsidiary&apos;s or partner&apos;s emissions inventory that is allocated to the parent company.</inlineHelpText>
+</CustomField>

@@ -1,0 +1,43 @@
+<template>
+    <div class="recent-container">
+
+        <button class="outline-btn" onclick={handleMyVisits}>My Visits  →</button>
+
+        <p class="section-label">Recent visits</p>
+
+        <template lwc:if={isLoading}>
+            <div class="loading-card">
+                <lightning-spinner alternative-text="Loading visits..." size="small"></lightning-spinner>
+                <span class="loading-text">Loading recent visits...</span>
+            </div>
+        </template>
+
+        <template lwc:if={isLoaded}>
+            <template lwc:if={hasRecentVisits}>
+                <template for:each={recentVisits} for:item="visit">
+                    <lightning-record-view-form
+                        key={visit.Id}
+                        record-id={visit.Id}
+                        object-api-name="Visit__c"
+                        density="comfy">
+                        <div class="visit-card" onclick={navigateToVisit} data-id={visit.Id}>
+                            <template for:each={fieldSetFields} for:item="field">
+                                <div key={field.fieldPath} class="field-row">
+                                    <lightning-output-field
+                                        field-name={field.fieldPath}>
+                                    </lightning-output-field>
+                                </div>
+                            </template>
+                        </div>
+                    </lightning-record-view-form>
+                </template>
+            </template>
+            <template lwc:else>
+                <div class="empty-state">
+                    <lightning-icon icon-name="utility:steps" size="small"></lightning-icon>
+                    <p>No visits yet. Tap Record to get started!</p>
+                </div>
+            </template>
+        </template>
+    </div>
+</template>

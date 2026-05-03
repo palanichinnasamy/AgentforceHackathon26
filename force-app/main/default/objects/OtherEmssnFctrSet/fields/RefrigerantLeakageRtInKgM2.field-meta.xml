@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RefrigerantLeakageRtInKgM2</fullName>
+    <inlineHelpText>Enter the annual average leakage rate of the refrigerant for the occupied building space in kilograms of refrigerant per square meter. This leakage rate is used to estimate the refrigerant consumption in the office space. This value is calculated if you enter the Refrigerant Leakage Rate (kg/sqft) value.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

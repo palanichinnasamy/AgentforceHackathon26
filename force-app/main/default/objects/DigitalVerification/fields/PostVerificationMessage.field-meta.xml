@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PostVerificationMessage</fullName>
+    <inlineHelpText>The message that is displayed after a verification is performed.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MaxVarianceAboveAvgElectrCnsmp</fullName>
+    <inlineHelpText>Difference between the highest normalized monthly electricity consumption and the average monthly electricity consumption of all the associated energy use records.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

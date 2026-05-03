@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ValidityDuration</fullName>
+    <inlineHelpText>Enter the number of days or months the badge remains valid for members after it is assigned to them. In the Validity Duration Unit field, select whether the number you enter in this field represents days or months. This field is only valid for badges whose validity type is Period.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

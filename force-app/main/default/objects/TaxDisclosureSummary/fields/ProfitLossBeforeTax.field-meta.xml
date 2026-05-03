@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ProfitLossBeforeTax</fullName>
+    <inlineHelpText>Enter a positive value that indicates profit before tax or negative value that indicates loss before tax.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

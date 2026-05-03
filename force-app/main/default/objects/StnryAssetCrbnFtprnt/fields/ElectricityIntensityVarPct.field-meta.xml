@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ElectricityIntensityVarPct</fullName>
+    <inlineHelpText>Percentage difference between the regional electricity consumption intensity of the carbon footprint and the electricity consumption intensity of the associated carbon footprint item.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

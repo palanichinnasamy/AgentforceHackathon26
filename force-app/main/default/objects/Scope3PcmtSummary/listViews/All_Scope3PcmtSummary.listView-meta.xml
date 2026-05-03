@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Scope3PcmtSummary</fullName>
+    <filterScope>Everything</filterScope>
+    <label>All Scope 3 Procurement Summaries</label>
+</ListView>

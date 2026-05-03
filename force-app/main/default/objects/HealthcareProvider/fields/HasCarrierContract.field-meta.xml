@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HasCarrierContract</fullName>
+    <inlineHelpText>Specifies whether the provider&apos;s contract uses a CMS Model MA Contract Amendment based on the Centers for Medicare and Medicaid Services (CMS) guidelines.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

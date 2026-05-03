@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DetailCodeId</fullName>
+    <inlineHelpText>The system-defined code that represents the information that you want to add to this procedure record. For instance, the body site code that represents the site of the procedure. If you select a detail code, you can&apos;t select a detail record.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

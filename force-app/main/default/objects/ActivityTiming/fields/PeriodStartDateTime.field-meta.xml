@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PeriodStartDateTime</fullName>
+    <inlineHelpText>The start date of the period during which the activity is repeated regularly. Use this field and the Period End Date field if you know the specific dates of the activity period. For instance, if you&apos;re asked to do cardio for 10 minutes 5 times every 2 days from March 1 to March 20, this field would have the value for March 1.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

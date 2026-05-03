@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GenlConversionFctrRevisionDate</fullName>
+    <inlineHelpText>Select the date when the electricity grid reference data for the emissions factors record is revised by the publishing authority.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

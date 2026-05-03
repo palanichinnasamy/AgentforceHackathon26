@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CostPerVoucher</fullName>
+    <inlineHelpText>The liability incurred by the loyalty program for each voucher that’s issued or redeemed using the definition.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

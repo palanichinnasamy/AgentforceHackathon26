@@ -1,0 +1,16 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "Input:File_Upload" : {
+      "title" : "File Upload",
+      "description" : "Expense image/ doc/ pdf that is incurred for visit with the doctor",
+      "lightning:type" : "lightning__recordInfoType",
+      "lightning:sObjectInfo" : {
+        "apiName" : "ContentDocument"
+      },
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

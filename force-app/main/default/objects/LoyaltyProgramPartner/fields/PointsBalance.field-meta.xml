@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PointsBalance</fullName>
+    <inlineHelpText>The points balance is the purchased points minus the debited points.</inlineHelpText>
+</CustomField>

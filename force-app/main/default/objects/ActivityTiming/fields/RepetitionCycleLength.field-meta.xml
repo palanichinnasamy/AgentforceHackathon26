@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RepetitionCycleLength</fullName>
+    <inlineHelpText>The recommended length of each repeating cycle during the activity period. For instance, if you&apos;re asked to do cardio for 10 minutes 5 times every 2 days from March 1 to March 20, this field would have the value 2.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

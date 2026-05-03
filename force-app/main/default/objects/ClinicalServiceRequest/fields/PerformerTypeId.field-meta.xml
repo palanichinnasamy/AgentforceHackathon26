@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PerformerTypeId</fullName>
+    <inlineHelpText>The system-defined code that represents the type of performer involved or their role in the service request. For instance, a legal child or a neurologist.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

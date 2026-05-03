@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DetailType</fullName>
+    <inlineHelpText>The type of relationship between the parent service request record and your detail record or detail code. For Body Site, select an appropriate detail code. For Requested Facility, select either a healthcare facility or an appropriate detail code. For Based On, select either a medication request or a clinical service request. For Reason Reference, select either a care observation or a health condition.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+</CustomField>

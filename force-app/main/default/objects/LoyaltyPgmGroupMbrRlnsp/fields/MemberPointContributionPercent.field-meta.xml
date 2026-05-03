@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MemberPointContributionPercent</fullName>
+    <inlineHelpText>The percentage of total points earned by a member that&apos;s contributed to the group.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

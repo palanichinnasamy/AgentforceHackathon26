@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ActivitySourceType</fullName>
+    <inlineHelpText>Select the source from which water is being consumed or withdrawn, or the destination to which water is being discharged.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

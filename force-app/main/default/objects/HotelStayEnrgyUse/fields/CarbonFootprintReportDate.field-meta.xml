@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CarbonFootprintReportDate</fullName>
+    <inlineHelpText>Select the date when the carbon footprint data of the associated stationary asset is due to be sent to a reporting body.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

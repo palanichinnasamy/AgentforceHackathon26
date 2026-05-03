@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <isExposed>false</isExposed>
+    <masterLabel>Agent Chat Modal</masterLabel>
+    <description>Bottom-sheet modal for conversing with Post_Visit_Log agent</description>
+</LightningComponentBundle>

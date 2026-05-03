@@ -1,0 +1,47 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "errorMessage" : {
+      "title" : "Error Message",
+      "description" : "Populated only when status=\"Error\". Contains the underlying exception message. Surface verbatim to the user and stop.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "matchCount" : {
+      "title" : "Match Count",
+      "description" : "Total matching records found. When greater than 5, only the first 5 are returned in records and status is \"TooMany\".",
+      "lightning:type" : "lightning__integerType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "records" : {
+      "title" : "Records",
+      "description" : "List of matched records (up to 5). Each item contains recordId (Salesforce Id), name (record name), displayLabel (pre-formatted \"Name — context\" string suitable for showing to the user as-is), and secondaryInfo (facility/phone for doctors, city/state for facilities).",
+      "maxItems" : 2000,
+      "items" : {
+        "lightning:type" : "@apexClassType/c__QueryRecordInvocable$RecordResult"
+      },
+      "lightning:type" : "lightning__listType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "status" : {
+      "title" : "Status",
+      "description" : "Result status. One of: \"Success\" (lookup completed — see records), \"NotFound\" (zero matches), \"TooMany\" (more than 5 matches — ask user for more details and re-invoke), \"Error\" (see errorMessage).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType",
+  "lightning:textIndexed" : true
+}

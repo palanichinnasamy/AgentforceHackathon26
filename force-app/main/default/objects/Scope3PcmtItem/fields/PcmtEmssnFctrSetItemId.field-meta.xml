@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PcmtEmssnFctrSetItemId</fullName>
+    <inlineHelpText>Specify the procurement emissions factor set item that contains the emissions factor to be applied to this procurement item.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

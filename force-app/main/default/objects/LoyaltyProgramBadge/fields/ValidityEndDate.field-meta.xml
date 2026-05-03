@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ValidityEndDate</fullName>
+    <inlineHelpText>The badge is no longer assigned to members after this date if you don’t specify a validity end date when assigning the badge to members.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

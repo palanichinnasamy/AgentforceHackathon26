@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BusinessRegion</fullName>
+    <inlineHelpText>Enter the business region. You can&apos;t select the country and state if you enter the business region.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

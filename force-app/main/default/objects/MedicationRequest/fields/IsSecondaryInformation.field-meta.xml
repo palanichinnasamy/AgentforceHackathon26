@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsSecondaryInformation</fullName>
+    <inlineHelpText>The information in this record was obtained by the record creator from a secondary source.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

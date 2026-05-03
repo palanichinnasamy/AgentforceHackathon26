@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsPrimary</fullName>
+    <inlineHelpText>When selected, indicates that this is the primary loyalty program and is shown on the Home page.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

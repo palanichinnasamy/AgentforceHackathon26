@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LongHaulMinimumDistance</fullName>
+    <inlineHelpText>Minimum distance for a long-haul flight that’s adjusted according to the short-haul or medium-haul distances.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>

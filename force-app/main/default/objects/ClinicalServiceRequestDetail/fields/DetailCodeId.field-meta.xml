@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DetailCodeId</fullName>
+    <inlineHelpText>The system-defined code that represents the information that you want to add to this service request record. For instance, the code for the body site relevant to the service request.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

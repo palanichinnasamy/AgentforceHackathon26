@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MissingDataReason</fullName>
+    <inlineHelpText>If the data from this observation is missing, list down the reasons for that here.</inlineHelpText>
+    <trackHistory>false</trackHistory>
+</CustomField>
