@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Returns aggregate counts plus the most recent 10 records (visits, tasks, expenses) for a Doctor (Person Account) or Facility (Business Account), filtered to the running user. Pass recordId and runningUserId; optionally set timeWindow (default THIS_YEAR) and customDays for CUSTOM_DAYS. Records past the cap are still counted in the totals so the agent can answer &quot;how many&quot; accurately.</description>
+    <developerName>Get_Record_Summary</developerName>
+    <invocationTarget>GetRecordSummary</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+    <localDeveloperName>Get_Record_Summary</localDeveloperName>
+    <masterLabel>Get Record Summary</masterLabel>
+    <progressIndicatorMessage>Processing</progressIndicatorMessage>
+</GenAiFunction>

@@ -220,7 +220,7 @@
     </contextVariables>
     <description>Analyze visit summaries from field sales representatives and automatically create follow-up tasks and meetings such as scheduling visits, sending materials, and reminders.
 Do not use &apos;Task Automation&apos; and &apos;Visit Automation&apos; topics. Only use &apos;Task and Visit Automation&apos; topic.</description>
-    <label>OncoGlobally Sales AI Employee Agent</label>
+    <label>Post-Visit Log Agent</label>
     <logPrivateConversationData>true</logPrivateConversationData>
     <richContentEnabled>true</richContentEnabled>
     <sessionTimeout>0</sessionTimeout>

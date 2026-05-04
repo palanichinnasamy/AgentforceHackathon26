@@ -1,0 +1,35 @@
+{
+  "required" : [ "recordId" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "customDays" : {
+      "title" : "Custom Days",
+      "description" : "Number of trailing days, only when timeWindow = CUSTOM_DAYS. Must be a positive integer. Example: \"last 60 days\" -> 60.",
+      "lightning:type" : "lightning__integerType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "recordId" : {
+      "title" : "Record Id",
+      "description" : "Salesforce Id of the matched Doctor (Person Account) or Facility (Business Account). Resolve this via Query Records first; do not invent or guess.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "runningUserId" : {
+      "title" : "Running User Id",
+      "description" : "Optional. User Id whose history to summarize. Employee Agent: leave blank — Apex falls back to the running user automatically. Service Agent (WhatsApp): MUST pass the verifiedUserId resolved during the WhatsApp authorization flow, otherwise it will incorrectly default to the Site Guest User.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "timeWindow" : {
+      "title" : "Time Window",
+      "description" : "LAST_7_DAYS | LAST_30_DAYS | LAST_MONTH | THIS_QUARTER | THIS_YEAR | ALL_TIME | CUSTOM_DAYS. Default THIS_YEAR if blank. Pick based on user phrasing: \"recent/this month\" -> LAST_30_DAYS, \"this week/yesterday/today\" -> LAST_7_DAYS, \"summary/recap/overview\" -> THIS_YEAR, \"all/everything/full/total\" -> ALL_TIME, \"last X days\" -> CUSTOM_DAYS with customDays set.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}
