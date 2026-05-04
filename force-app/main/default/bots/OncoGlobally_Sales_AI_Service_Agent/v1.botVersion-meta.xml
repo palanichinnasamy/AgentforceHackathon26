@@ -121,6 +121,13 @@
         <visibility>Internal</visibility>
     </conversationVariables>
     <conversationVariables>
+        <dataType>Boolean</dataType>
+        <developerName>isWhatsAppAuthorized</developerName>
+        <includeInPrompt>true</includeInPrompt>
+        <label>Is WhatsApp Authorized</label>
+        <visibility>External</visibility>
+    </conversationVariables>
+    <conversationVariables>
         <dataType>Text</dataType>
         <description>This variable may also be referred to as VerifiedCustomerId</description>
         <developerName>VerifiedCustomerId</developerName>

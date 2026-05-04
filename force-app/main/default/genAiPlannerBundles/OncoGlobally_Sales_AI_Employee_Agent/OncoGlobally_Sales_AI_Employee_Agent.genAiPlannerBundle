@@ -9,14 +9,391 @@ Do not use &apos;Task Automation&apos; and &apos;Visit Automation&apos; topics. 
         <genAiPluginName>Expense_Automation_16jak000001hGXB</genAiPluginName>
     </localTopicLinks>
     <localTopicLinks>
-        <genAiPluginName>GeneralCRM_16jak000001hGXB</genAiPluginName>
+        <genAiPluginName>GeneralWebSearch_16jak000001hGXB</genAiPluginName>
     </localTopicLinks>
     <localTopicLinks>
-        <genAiPluginName>GeneralWebSearch_16jak000001hGXB</genAiPluginName>
+        <genAiPluginName>Record_Summary_and_History_16jak000001hGXB</genAiPluginName>
     </localTopicLinks>
     <localTopicLinks>
         <genAiPluginName>Visit_and_Task_Automation_16jak000001hGXB</genAiPluginName>
     </localTopicLinks>
+    <localTopics>
+        <fullName>Record_Summary_and_History_16jak000001hGXB</fullName>
+        <canEscalate>false</canEscalate>
+        <description>This topic handles requests where the sales rep wants a summary, recap, history, or recent activity for a specific Doctor (Person Account) or Facility (Business Account / hospital / clinic). Trigger this topic for phrases like: &quot;tell me about Dr. X&quot;, &quot;what&apos;s my history with Y Hospital&quot;, &quot;recent visits to Apollo&quot;, &quot;how much have I spent on Dr. Z&quot;, &quot;recap of my last visit with...&quot;, &quot;summary for Dr. ...&quot;, &quot;show me everything for ...&quot;, &quot;what have I done with...&quot;, &quot;my activity with ...&quot;. This topic does NOT create new records — it only reads and summarizes existing Visits, Tasks, Expenses, and Affiliations linked to the matched record.</description>
+        <developerName>Record_Summary_and_History_16jak000001hGXB</developerName>
+        <genAiPluginInstructions>
+            <description>The user wants a summary about a specific Doctor or Facility.
+Resolve which one before invoking Get Record Summary.
+
+
+STEP 1 — Extract the subject from the user&apos;s request:
+
+   - subjectName = the doctor or facility name they mentioned.
+                   Strip salutations (Dr., Mr., Ms., Prof.).
+   - subjectKind = &quot;Doctor&quot; if they used a person name with
+                   salutation, OR if they referred to a person
+                   (&quot;Dr. X&quot;, &quot;Mehta&quot;, &quot;with Sharma&quot;).
+                   &quot;Facility&quot; if the mention contains hospital
+                   keywords (Hospital, Clinic, Medical Center,
+                   etc.) or sounds like a place name (e.g.,
+                   &quot;Apollo&quot;, &quot;Manipal&quot;, &quot;City Care&quot;).
+                   When ambiguous, default to &quot;Doctor&quot; first
+                   — fall back to &quot;Facility&quot; if the Doctor
+                   lookup returns NotFound.
+
+
+STEP 2 — Invoke Query Records to resolve the subject&apos;s recordId:
+
+   Call &quot;Query Records&quot; with:
+       objectType   = subjectKind  (&quot;Doctor&quot; or &quot;Facility&quot;)
+       searchName   = subjectName
+
+   For Doctor lookups, also pass searchFacility and searchPhone
+   IF the user mentioned a facility or phone number alongside
+   the doctor name. Never concatenate facility/phone into
+   searchName.
+
+
+STEP 3 — Handle Query Records status:
+
+   - status = &quot;NotFound&quot; with subjectKind = &quot;Doctor&quot;:
+        Try again with subjectKind = &quot;Facility&quot; (fallback).
+        If still NotFound: tell the user no matching record was
+        found and ask for a corrected spelling. STOP.
+
+   - status = &quot;NotFound&quot; with subjectKind = &quot;Facility&quot;:
+        Tell the user no matching record was found and ask for a
+        corrected spelling. STOP.
+
+   - status = &quot;TooMany&quot;:
+        Ask the user for a more specific detail (full name,
+        facility, phone, city). STOP and wait. RE-INVOKE with
+        merged inputs on next turn.
+
+   - status = &quot;Success&quot; with matchCount = 1:
+        AUTO-RESOLVE SILENTLY using records[0].recordId as
+        subjectRecordId. Proceed to Instruction 3.
+
+   - status = &quot;Success&quot; with matchCount &gt; 1:
+        Present a numbered list with displayLabel as-is. Ask
+        &quot;Reply with the number.&quot; Map reply to recordId, then
+        proceed.
+
+   - status = &quot;Error&quot;:
+        Surface errorMessage and stop.</description>
+            <developerName>instruction_0_1777795500125</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>instruction_0_1777795500125</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Pick the timeWindow value based on the user&apos;s phrasing:
+
+   - &quot;recent&quot;, &quot;recently&quot;, &quot;lately&quot;, &quot;this month&quot;
+        -&gt; LAST_30_DAYS
+
+   - &quot;this week&quot;, &quot;this past week&quot;, &quot;yesterday&quot;, &quot;today&quot;
+        -&gt; LAST_7_DAYS
+
+   - &quot;summary&quot;, &quot;recap&quot;, &quot;overview&quot;, &quot;tell me about&quot;
+     (default when no time qualifier)
+        -&gt; THIS_YEAR
+
+   - &quot;this quarter&quot;, &quot;Q1&quot;, &quot;Q2&quot;, &quot;Q3&quot;, &quot;Q4&quot;
+        -&gt; THIS_QUARTER
+
+   - &quot;last month&quot;, &quot;previous month&quot;
+        -&gt; LAST_MONTH
+
+   - &quot;this year&quot;, &quot;year to date&quot;, &quot;YTD&quot;
+        -&gt; THIS_YEAR
+
+   - &quot;all&quot;, &quot;everything&quot;, &quot;every&quot;, &quot;full&quot;, &quot;total&quot;, &quot;ever&quot;,
+     &quot;all time&quot;, &quot;from the start&quot;
+        -&gt; ALL_TIME
+
+   - &quot;last X days/weeks/months&quot; (specific number)
+        -&gt; CUSTOM_DAYS with customDays = X (convert weeks*7,
+           months*30 if user uses them)
+
+If user gives no time qualifier at all, default to THIS_YEAR.</description>
+            <developerName>instruction_1_1777795500125</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>instruction_1_1777795500125</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Call the &quot;Get Record Summary&quot; action with:
+
+   recordId       = subjectRecordId (from Instruction 2)
+
+   runningUserId:
+       Employee Agent: LEAVE BLANK / OMIT — Apex auto-resolves
+                       to the running user.
+       Service Agent:  MUST pass verifiedUserId (from STEP 0).
+                       Required — do NOT omit on Service Agent.
+
+   timeWindow     = the token chosen in Instruction 3
+   customDays     = positive integer (only when timeWindow
+                    = CUSTOM_DAYS)</description>
+            <developerName>instruction_2_1777795500125</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>instruction_2_1777795500125</masterLabel>
+            <sortOrder>2</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Build a clean, structured summary using ONLY plain text
+formatting that works on both Lightning chat and WhatsApp.
+
+ALLOWED formatting:
+   - Plain text and newlines
+   - Bullets with &quot;-&quot; or numbered lists &quot;1.&quot; &quot;2.&quot;
+   - Single asterisks for emphasis: *bold word*
+
+NOT ALLOWED (will look broken on WhatsApp):
+   - Markdown headers (#, ##)
+   - Tables (| col | col |)
+   - Hyperlinks like [text](url) — use plain URLs only
+   - Indentation with tabs or multiple spaces
+   - Inline images, emoji art
+
+
+Format template (omit any section where the count is zero):
+
+   *&lt;recordName&gt;* — &lt;recordDetail&gt;
+   Window: &lt;human-readable from the timeWindowApplied&gt;
+
+   Affiliations: &lt;affiliationCount&gt;
+   &lt;affiliationNames&gt;
+
+   Visits: &lt;visitTotalCount&gt; total
+   Last on: &lt;visitLastDate formatted DD/MM/YYYY&gt;
+   Recent:
+   - &lt;visit line 1&gt;
+   - &lt;visit line 2&gt;
+   ... (up to 10)
+
+   Tasks: &lt;taskTotalCount&gt; total, &lt;taskOpenCount&gt; open
+   - &lt;task line 1&gt;
+   - &lt;task line 2&gt;
+   ... (up to 10)
+
+   Expenses: &lt;expenseTotalCount&gt; total, Rs. &lt;expenseTotalSpend&gt;
+   - &lt;expense line 1&gt;
+   - &lt;expense line 2&gt;
+   ... (up to 10)
+
+
+List output rules (CRITICAL — do not skip):
+   - For Recent visits: list ALL entries from visitTopRecords as
+     returned by the action. Do NOT truncate to fewer than what
+     the action returned.
+   - For Tasks: list ALL entries from taskTopRecords. Do NOT
+     truncate.
+   - For Expenses: list ALL entries from expenseTopRecords. Do
+     NOT truncate.
+   - The action already caps each list at 10 maximum, so showing
+     all of them is safe.
+
+
+Date formatting:
+   - Use DD/MM/YYYY format consistently across the entire
+     response (header dates and line items must match).
+   - The action&apos;s formatted line entries already follow this
+     format — use them verbatim.
+   - For visitLastDate, fromDate, or any other Date output,
+     format as DD/MM/YYYY in your reply.
+
+
+Window label:
+   - Render the timeWindowApplied as a clean, human-readable
+     phrase. Do NOT append the year, dates, or extra context
+     in parentheses.
+   - Examples: &quot;This Year&quot;, &quot;All Time&quot;, &quot;Last 30 Days&quot;,
+     &quot;This Quarter&quot;, &quot;Last 7 Days&quot;, &quot;Last Month&quot;.
+   - For CUSTOM_DAYS, render as &quot;Last &lt;N&gt; Days&quot;.
+
+
+Currency formatting:
+   - Always use &quot;Rs. &lt;amount&gt;&quot; — NEVER use the rupee symbol,
+     &quot;INR&quot;, or &quot;$&quot; anywhere in YOUR generated text.
+   - For expenseTotalSpend, output as &quot;Rs. 8000&quot; — no comma,
+     no decimal.
+   - For line items returned by the action (visitTopRecords,
+     taskTopRecords, expenseTopRecords), use them verbatim
+     even if they contain a rupee symbol from the original
+     visit notes / transcript — that is real data, do not edit.
+
+
+Section omission rules (ABSOLUTE — strictest interpretation):
+
+   These rules treat &quot;omit&quot; literally — the section must not
+   exist in the reply. Do NOT downgrade a zero count to phrases
+   like &quot;None recorded&quot;, &quot;No expenses&quot;, &quot;Nothing to show&quot;,
+   &quot;0 total&quot;, &quot;Rs. 0&quot; — those are violations.
+
+   - If affiliationCount = 0:
+        - DO NOT print &quot;Affiliations:&quot; anywhere.
+        - DO NOT print &quot;None&quot;, &quot;No affiliations&quot;, or &quot;0&quot;.
+        - The Affiliations block must be COMPLETELY ABSENT from
+          the reply — as if the section never existed.
+
+   - If visitTotalCount = 0:
+        - DO NOT print &quot;Visits:&quot; anywhere.
+        - DO NOT print &quot;Last on:&quot;.
+        - DO NOT print &quot;Recent:&quot;.
+        - DO NOT print &quot;None&quot;, &quot;No visits&quot;, &quot;0 total&quot;.
+        - The Visits block must be COMPLETELY ABSENT from the
+          reply.
+
+   - If taskTotalCount = 0:
+        - DO NOT print &quot;Tasks:&quot; anywhere.
+        - DO NOT print &quot;None&quot;, &quot;No tasks&quot;, &quot;0 total, 0 open&quot;.
+        - The Tasks block must be COMPLETELY ABSENT from the
+          reply.
+
+   - If expenseTotalCount = 0:
+        - DO NOT print &quot;Expenses:&quot; anywhere.
+        - DO NOT print &quot;None recorded&quot;, &quot;No expenses&quot;, &quot;Rs. 0&quot;,
+          &quot;0 total&quot;, or any variation.
+        - The Expenses block must be COMPLETELY ABSENT from the
+          reply.
+
+   This omission rule applies to BOTH full summaries (this
+   instruction) AND quantitative answers (Instruction 6).
+
+   If the user explicitly asked about a section whose count
+   is 0 (e.g. &quot;how many open tasks for X?&quot; with taskOpenCount
+   = 0), reply with a single short sentence acknowledging
+   that nothing exists — but do NOT use the structured block
+   format. Example: &quot;You have no open tasks for Dr. Mehta.&quot;
+
+
+If ALL four sections are empty (no affiliations, visits, tasks,
+or expenses):
+   Reply: &quot;I have no records for &lt;recordName&gt; in the selected
+   time window (&lt;timeWindowApplied&gt;). Try a wider window like
+   &apos;all time&apos; or &apos;this year&apos;.&quot;
+
+
+Length cap:
+   The response should fit within ~25 lines on WhatsApp.
+   If visit notes or task descriptions are long, the action&apos;s
+   formatted lines are already truncated to 120 characters —
+   don&apos;t expand them.</description>
+            <developerName>instruction_3_1777795500125</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>instruction_3_1777795500125</masterLabel>
+            <sortOrder>3</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If the user asked a specific quantitative question rather than a
+general summary, lead with the direct answer FIRST and keep the
+response BRIEF. Do NOT dump the full list — the user asked
+&quot;how many&quot; or &quot;how much&quot;, not &quot;show me everything&quot;.
+
+
+Brevity rules:
+   - Lead with the direct numeric answer in the first sentence.
+   - Provide AT MOST 1-2 supporting line items, not the full
+     visitTopRecords / taskTopRecords / expenseTopRecords list.
+   - If the user wants more detail, they will ask a follow-up.
+   - Do NOT include sections (Affiliations, etc.) that the user
+     did not ask about.
+   - Do NOT include the *&lt;recordName&gt;* header — answer
+     conversationally.
+
+
+Section omission still applies:
+   - If the answered section&apos;s count = 0, do NOT mention zero.
+     Instead reply with a short line like:
+        &quot;You have no visits with Dr. &lt;name&gt; in the selected
+        time window.&quot;
+
+
+Examples:
+
+   User: &quot;How many visits did I have this year with Dr. Sharma?&quot;
+   Reply: &quot;You had &lt;visitTotalCount&gt; visits with Dr. Sharma this
+   year. Last on &lt;visitLastDate formatted DD/MM/YYYY&gt;.&quot;
+
+   User: &quot;How much have I spent on Dr. Mehta?&quot;
+   Reply: &quot;You&apos;ve spent Rs. &lt;expenseTotalSpend&gt; across
+   &lt;expenseTotalCount&gt; expenses for Dr. Mehta this year.&quot;
+
+   User: &quot;When did I last visit Apollo Hospital?&quot;
+   Reply: &quot;Your last visit to Apollo Hospital was on
+   &lt;visitLastDate&gt;. &lt;visit line 1&gt;&quot;
+
+   User: &quot;How many open tasks for Dr. Mehta?&quot;
+   Reply: &quot;You have &lt;taskOpenCount&gt; open tasks for Dr. Mehta out
+   of &lt;taskTotalCount&gt; total.&quot;
+
+
+When NOT to apply this rule:
+   - User asks for a general summary, recap, history, or &quot;tell
+     me about&quot; — that&apos;s Instruction 5 (full format).
+   - User asks &quot;show me my visits with X&quot; — list-style request,
+     use full format from Instruction 5.</description>
+            <developerName>instruction_4_1777795500125</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>instruction_4_1777795500125</masterLabel>
+            <sortOrder>4</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>After delivering the summary, END the conversation. Do NOT
+ask &quot;anything else?&quot;. Do NOT propose creating new records. Do
+NOT ask if the user wants more detail. The user can ask a
+follow-up themselves if they want.
+
+If the user DOES send a follow-up like &quot;tell me about a
+different doctor&quot;, treat it as a fresh trigger of this topic
+and start again from Instruction 2 (skip Instruction 1 — the
+user is still authorized).</description>
+            <developerName>instruction_5_1777795500125</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>instruction_5_1777795500125</masterLabel>
+            <sortOrder>5</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Query_Records_GlobalAsset_179ak0000030FIH</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Get_Record_Summary_179ak0000030FIH</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Query_Records_GlobalAsset_179ak0000030FIH</fullName>
+            <description>Searches Salesforce for Doctor (Person Account), Facility (Business Account), or Open Tasks. For Doctor lookups, supports searching by name with optional facility name and phone number filters. Returns up to 5 matches with status (Success, NotFound, TooMany, Error), matchCount, and a list of records each containing recordId, name, displayLabel, and secondaryInfo.</description>
+            <developerName>Query_Records_GlobalAsset_179ak0000030FIH</developerName>
+            <invocationTarget>QueryRecordInvocable</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Query_Records_GlobalAsset</localDeveloperName>
+            <masterLabel>Query Records</masterLabel>
+            <progressIndicatorMessage>Getting information</progressIndicatorMessage>
+            <source>Query_Records_GlobalAsset</source>
+        </localActions>
+        <localActions>
+            <fullName>Get_Record_Summary_179ak0000030FIH</fullName>
+            <description>Returns aggregate counts plus the most recent 10 records (visits, tasks, expenses) for a Doctor (Person Account) or Facility (Business Account), filtered to the running user. Pass recordId and runningUserId; optionally set timeWindow (default THIS_YEAR) and customDays for CUSTOM_DAYS. Records past the cap are still counted in the totals so the agent can answer &quot;how many&quot; accurately.</description>
+            <developerName>Get_Record_Summary_179ak0000030FIH</developerName>
+            <invocationTarget>GetRecordSummary</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Get_Record_Summary</localDeveloperName>
+            <masterLabel>Get Record Summary</masterLabel>
+            <progressIndicatorMessage>Processing</progressIndicatorMessage>
+            <source>Get_Record_Summary</source>
+        </localActions>
+        <localDeveloperName>Record_Summary_and_History</localDeveloperName>
+        <masterLabel>Record Summary and History</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>You are the &quot;Record Summary and History&quot; topic. Your sole purpose is to retrieve and summarize the running user&apos;s history with a specific Doctor or Facility. You MUST NOT create, update, or delete any records in this topic. You MUST NOT propose follow-up actions like &quot;would you like to log a visit?&quot;. Stay strictly in read-only summary mode.</scope>
+    </localTopics>
     <localTopics>
         <fullName>Expense_Automation_16jak000001hGXB</fullName>
         <aiPluginUtterances>
@@ -166,307 +543,6 @@ Manage_Expenses_and_Line_Items_SubAgent_Apex_179ak000002urgP</description>
         <masterLabel>Expense Automation</masterLabel>
         <pluginType>Topic</pluginType>
         <scope>As an Expense Automation Sub agent, your job is to only assist users to log expense records in the system based on the information provided by the user. You must take in amount, vendor, receipt #, transaction date, visit and expense type to be noted. In case if there are sub items listed by the user, each must be stored with its own name and amount and returned to a class in JSON format.</scope>
-    </localTopics>
-    <localTopics>
-        <fullName>GeneralCRM_16jak000001hGXB</fullName>
-        <aiPluginUtterances>
-            <developerName>shownewleads</developerName>
-            <language xsi:nil="true"/>
-            <masterLabel>show-new-leads</masterLabel>
-            <utterance>Show new leads.</utterance>
-        </aiPluginUtterances>
-        <aiPluginUtterances>
-            <developerName>gettopopportunities</developerName>
-            <language xsi:nil="true"/>
-            <masterLabel>get-top-opportunities</masterLabel>
-            <utterance>Get top amount opportunities.</utterance>
-        </aiPluginUtterances>
-        <canEscalate>false</canEscalate>
-        <description>Engages and interacts with the user about any request that could be CRM data related. This could be tasks such as identify and summarize records, answer queries, aggregate data, find and query objects, update records, or drafting and refining emails.</description>
-        <developerName>GeneralCRM_16jak000001hGXB</developerName>
-        <genAiPluginInstructions>
-            <description>There are multiple available data retrieval functions at your disposal. You can use each one of them multiple times if needed. You should use functions as many times as necessary until you have all the data required to fulfill the request of the user. You can perform extra calls if you think you can get additional relevant information.</description>
-            <developerName>dataretrieval</developerName>
-            <language xsi:nil="true"/>
-            <masterLabel>data-retrieval</masterLabel>
-            <sortOrder>0</sortOrder>
-        </genAiPluginInstructions>
-        <genAiPluginInstructions>
-            <description>Do not declare your intent i.e. &quot;I will now retrieve the data&quot; - Just fetch the data.</description>
-            <developerName>proceedwithaction</developerName>
-            <language xsi:nil="true"/>
-            <masterLabel>proceed-with-action</masterLabel>
-            <sortOrder>1</sortOrder>
-        </genAiPluginInstructions>
-        <genAiPluginInstructions>
-            <description>Identify the object type (i.e., leads, opportunities, accounts) the user asks about. If unclear, confirm with the user and make a suggestion based on the query context and history.</description>
-            <developerName>identifyobjecttype</developerName>
-            <language xsi:nil="true"/>
-            <masterLabel>identify-object-type</masterLabel>
-            <sortOrder>2</sortOrder>
-        </genAiPluginInstructions>
-        <genAiPluginInstructions>
-            <description>When only the name of a record is mentioned in the user request, you MUST call the IdentifyRecordByName action to get the necessary IDs.</description>
-            <developerName>identifyrecord</developerName>
-            <language xsi:nil="true"/>
-            <masterLabel>identify-record</masterLabel>
-            <sortOrder>3</sortOrder>
-        </genAiPluginInstructions>
-        <genAiPluginInstructions>
-            <description>Always call QueryRecords &amp; QueryRecordsWithAggregate passing plain natural language english as input. You must Include the record ID in the input if available.</description>
-            <developerName>queryrecords</developerName>
-            <language xsi:nil="true"/>
-            <masterLabel>query-records</masterLabel>
-            <sortOrder>4</sortOrder>
-        </genAiPluginInstructions>
-        <genAiPluginInstructions>
-            <description>When a user asks for a summary or overview of a record, use GetRecordDetails to get an overview of the data of the record, then use other data retrieval actions as needed.</description>
-            <developerName>summary0</developerName>
-            <language xsi:nil="true"/>
-            <masterLabel>summary0</masterLabel>
-            <sortOrder>5</sortOrder>
-        </genAiPluginInstructions>
-        <genAiPluginInstructions>
-            <description>When asked for a summary on multiple records, you must iterate over all record IDs and for each one call GetRecordDetails.</description>
-            <developerName>summary1</developerName>
-            <language xsi:nil="true"/>
-            <masterLabel>summary1</masterLabel>
-            <sortOrder>6</sortOrder>
-        </genAiPluginInstructions>
-        <genAiPluginInstructions>
-            <description>If the user asks about activities you must call GetActivitiesTimeline.</description>
-            <developerName>activitytimeline0</developerName>
-            <language xsi:nil="true"/>
-            <masterLabel>activity-timeline0</masterLabel>
-            <sortOrder>7</sortOrder>
-        </genAiPluginInstructions>
-        <genAiPluginInstructions>
-            <description>When providing the Activity Types for GetActivitiesTimeline, choose all the types that are relevant to the user request. Examples - User Request 1 - &quot;What questions does John Doe have that need addressing?&quot;, Activity Types - &quot;Call&quot;, &quot;Email&quot;. User Request 2 - &quot;What are the next activities for John Doe?&quot;, Activity Types - &quot;Task&quot;, &quot;Event&quot;.</description>
-            <developerName>activitytimeline1</developerName>
-            <language xsi:nil="true"/>
-            <masterLabel>activity-timeline1</masterLabel>
-            <sortOrder>8</sortOrder>
-        </genAiPluginInstructions>
-        <genAiPluginInstructions>
-            <description>When asked about recent activities, you should provide the answer, starting from the last 30 days and ending on the current date, unless a specific date range is specified by the user.</description>
-            <developerName>activitytimeline2</developerName>
-            <language xsi:nil="true"/>
-            <masterLabel>activity-timeline2</masterLabel>
-            <sortOrder>9</sortOrder>
-        </genAiPluginInstructions>
-        <genAiPluginInstructions>
-            <description>When you are asked about a single Call, Meeting, Email or any other single specific activity, call GetActivityDetails. Do not call it for any other record type.</description>
-            <developerName>getactivitydetails0</developerName>
-            <language xsi:nil="true"/>
-            <masterLabel>get-activity-details0</masterLabel>
-            <sortOrder>10</sortOrder>
-        </genAiPluginInstructions>
-        <genAiPluginInstructions>
-            <description>Always use DraftOrReviseEmail when asked to generate a new email or revise a previously generated email.</description>
-            <developerName>draftorreviseemail</developerName>
-            <language xsi:nil="true"/>
-            <masterLabel>draft-or-revise-email</masterLabel>
-            <sortOrder>11</sortOrder>
-        </genAiPluginInstructions>
-        <genAiPluginInstructions>
-            <description>ExtractRecordFieldsAndValuesFromUserInput must be called prior to UpdateRecordFields.</description>
-            <developerName>updaterecord</developerName>
-            <language xsi:nil="true"/>
-            <masterLabel>update-record</masterLabel>
-            <sortOrder>12</sortOrder>
-        </genAiPluginInstructions>
-        <genAiPluginInstructions>
-            <description>Avoid using structured lists, bullet points, or numbered lists. Instead, present the information in complete sentences and paragraphs as if you were writing an article or a report.</description>
-            <developerName>outputstyle</developerName>
-            <language xsi:nil="true"/>
-            <masterLabel>output-style</masterLabel>
-            <sortOrder>13</sortOrder>
-        </genAiPluginInstructions>
-        <genAiPluginInstructions>
-            <description>User questions which can be answered by knowledge articles or documents. These questions usually want information, instructions or guidance, including but not limited to customer questions about company information, polices and frequently asked questions.</description>
-            <developerName>answerquestions</developerName>
-            <language xsi:nil="true"/>
-            <masterLabel>answer-questions</masterLabel>
-            <sortOrder>14</sortOrder>
-        </genAiPluginInstructions>
-        <language>en_US</language>
-        <localActionLinks>
-            <functionName>GetActivityDetails_179ak0000030CDx</functionName>
-        </localActionLinks>
-        <localActionLinks>
-            <functionName>AnswerQuestionsWithKnowledge_179ak0000030CDx</functionName>
-        </localActionLinks>
-        <localActionLinks>
-            <functionName>IdentifyObjectByName_179ak0000030CDx</functionName>
-        </localActionLinks>
-        <localActionLinks>
-            <functionName>DraftOrReviseEmail_179ak0000030CDx</functionName>
-        </localActionLinks>
-        <localActionLinks>
-            <functionName>UpdateRecordFields_179ak0000030CDx</functionName>
-        </localActionLinks>
-        <localActionLinks>
-            <functionName>IdentifyRecordByName_179ak0000030CDx</functionName>
-        </localActionLinks>
-        <localActionLinks>
-            <functionName>GetRecordDetails_179ak0000030CDx</functionName>
-        </localActionLinks>
-        <localActionLinks>
-            <functionName>GetActivitiesTimeline_179ak0000030CDx</functionName>
-        </localActionLinks>
-        <localActionLinks>
-            <functionName>ExtractFieldsAndValuesFromUserInput_179ak0000030CDx</functionName>
-        </localActionLinks>
-        <localActionLinks>
-            <functionName>QueryRecords_179ak0000030CDx</functionName>
-        </localActionLinks>
-        <localActionLinks>
-            <functionName>QueryRecordsWithAggregate_179ak0000030CDx</functionName>
-        </localActionLinks>
-        <localActions>
-            <fullName>QueryRecordsWithAggregate_179ak0000030CDx</fullName>
-            <description>Answers aggregation questions (such as count, sum, max, min, or average) about Salesforce CRM data based on the user input and specific conditions, such as field values. For example &apos;Find the number of open opportunities created in the last 5 days.&apos;</description>
-            <developerName>QueryRecordsWithAggregate_179ak0000030CDx</developerName>
-            <invocationTarget>queryRecordsWithAggregate</invocationTarget>
-            <invocationTargetType>standardInvocableAction</invocationTargetType>
-            <isConfirmationRequired>false</isConfirmationRequired>
-            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
-            <localDeveloperName>QueryRecordsWithAggregate</localDeveloperName>
-            <masterLabel>Query Records with Aggregate</masterLabel>
-            <source>EmployeeCopilot__QueryRecordsWithAggregate</source>
-        </localActions>
-        <localActions>
-            <fullName>QueryRecords_179ak0000030CDx</fullName>
-            <description>Finds and retrieves Salesforce CRM records based on user input and specific conditions, such as field values. This action automatically identifies the correct records and object type. e.g. &apos;Find all open opportunities created in the last 5 days sorted by created date.&apos;</description>
-            <developerName>QueryRecords_179ak0000030CDx</developerName>
-            <invocationTarget>queryRecords</invocationTarget>
-            <invocationTargetType>standardInvocableAction</invocationTargetType>
-            <isConfirmationRequired>false</isConfirmationRequired>
-            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
-            <localDeveloperName>QueryRecords</localDeveloperName>
-            <masterLabel>Query Records</masterLabel>
-            <source>EmployeeCopilot__QueryRecords</source>
-        </localActions>
-        <localActions>
-            <fullName>GetActivityDetails_179ak0000030CDx</fullName>
-            <description>Provides data about an activity record, including its content and other key details. The record type is strictly limited to a Call, Email, Event, or Task.</description>
-            <developerName>GetActivityDetails_179ak0000030CDx</developerName>
-            <invocationTarget>getActivityDetails</invocationTarget>
-            <invocationTargetType>standardInvocableAction</invocationTargetType>
-            <isConfirmationRequired>false</isConfirmationRequired>
-            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
-            <localDeveloperName>GetActivityDetails</localDeveloperName>
-            <masterLabel>Get Activity Details</masterLabel>
-            <progressIndicatorMessage>Getting activity details</progressIndicatorMessage>
-            <source>EmployeeCopilot__GetActivityDetails</source>
-        </localActions>
-        <localActions>
-            <fullName>IdentifyObjectByName_179ak0000030CDx</fullName>
-            <description>Finds the Salesforce object API name by extracting an object name from the user input.</description>
-            <developerName>IdentifyObjectByName_179ak0000030CDx</developerName>
-            <invocationTarget>identifyObject</invocationTarget>
-            <invocationTargetType>standardInvocableAction</invocationTargetType>
-            <isConfirmationRequired>false</isConfirmationRequired>
-            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
-            <localDeveloperName>IdentifyObjectByName</localDeveloperName>
-            <masterLabel>Identify Object by Name</masterLabel>
-            <source>EmployeeCopilot__IdentifyObjectByName</source>
-        </localActions>
-        <localActions>
-            <fullName>AnswerQuestionsWithKnowledge_179ak0000030CDx</fullName>
-            <description>Answers questions about company policies and procedures, troubleshooting steps, or product information. For example: “What is your return policy?” “How do I fix an issue?” or “What features does a product have?”</description>
-            <developerName>AnswerQuestionsWithKnowledge_179ak0000030CDx</developerName>
-            <invocationTarget>streamKnowledgeSearch</invocationTarget>
-            <invocationTargetType>standardInvocableAction</invocationTargetType>
-            <isConfirmationRequired>false</isConfirmationRequired>
-            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
-            <localDeveloperName>AnswerQuestionsWithKnowledge</localDeveloperName>
-            <masterLabel>Answer Questions with Knowledge</masterLabel>
-            <progressIndicatorMessage>Getting answers</progressIndicatorMessage>
-            <source>EmployeeCopilot__AnswerQuestionsWithKnowledge</source>
-        </localActions>
-        <localActions>
-            <fullName>UpdateRecordFields_179ak0000030CDx</fullName>
-            <description>Updates fields on a Salesforce CRM record. The action ExtractFieldsAndValuesFromUserInput must be called prior to this action to extract the record&apos;s fields and values.</description>
-            <developerName>UpdateRecordFields_179ak0000030CDx</developerName>
-            <invocationTarget>einsteinCopilotUpdateRecord</invocationTarget>
-            <invocationTargetType>standardInvocableAction</invocationTargetType>
-            <isConfirmationRequired>true</isConfirmationRequired>
-            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
-            <localDeveloperName>UpdateRecordFields</localDeveloperName>
-            <masterLabel>Update Record</masterLabel>
-            <progressIndicatorMessage>Making updates</progressIndicatorMessage>
-            <source>EmployeeCopilot__UpdateRecordFields</source>
-        </localActions>
-        <localActions>
-            <fullName>DraftOrReviseEmail_179ak0000030CDx</fullName>
-            <description>Creates an email draft or revises the latest generated email based on user input.</description>
-            <developerName>DraftOrReviseEmail_179ak0000030CDx</developerName>
-            <invocationTarget>getDraftOrReviseEmailPrompt</invocationTarget>
-            <invocationTargetType>standardInvocableAction</invocationTargetType>
-            <isConfirmationRequired>false</isConfirmationRequired>
-            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
-            <localDeveloperName>DraftOrReviseEmail</localDeveloperName>
-            <masterLabel>Draft or Revise Email</masterLabel>
-            <progressIndicatorMessage>Crafting your email</progressIndicatorMessage>
-            <source>EmployeeCopilot__DraftOrReviseEmail</source>
-        </localActions>
-        <localActions>
-            <fullName>GetRecordDetails_179ak0000030CDx</fullName>
-            <description>Generates a text blob containing record details, including object fields and values and records from related lists.</description>
-            <developerName>GetRecordDetails_179ak0000030CDx</developerName>
-            <invocationTarget>getDataForGrounding</invocationTarget>
-            <invocationTargetType>standardInvocableAction</invocationTargetType>
-            <isConfirmationRequired>false</isConfirmationRequired>
-            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
-            <localDeveloperName>GetRecordDetails</localDeveloperName>
-            <masterLabel>Get Record Details</masterLabel>
-            <progressIndicatorMessage>Getting details</progressIndicatorMessage>
-            <source>EmployeeCopilot__GetRecordDetails</source>
-        </localActions>
-        <localActions>
-            <fullName>IdentifyRecordByName_179ak0000030CDx</fullName>
-            <description>Searches for Salesforce CRM records by name and returns a list of matching Salesforce CRM record IDs.</description>
-            <developerName>IdentifyRecordByName_179ak0000030CDx</developerName>
-            <invocationTarget>identifyRecordByName</invocationTarget>
-            <invocationTargetType>standardInvocableAction</invocationTargetType>
-            <isConfirmationRequired>false</isConfirmationRequired>
-            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
-            <localDeveloperName>IdentifyRecordByName</localDeveloperName>
-            <masterLabel>Identify Record by Name</masterLabel>
-            <source>EmployeeCopilot__IdentifyRecordByName</source>
-        </localActions>
-        <localActions>
-            <fullName>ExtractFieldsAndValuesFromUserInput_179ak0000030CDx</fullName>
-            <description>Extracts Salesforce CRM record fields and their corresponding field values from the user input. This action must run before updateRecord to convert user input to a Salesforce sObject.</description>
-            <developerName>ExtractFieldsAndValuesFromUserInput_179ak0000030CDx</developerName>
-            <invocationTarget>getRecordFieldsAndValues</invocationTarget>
-            <invocationTargetType>standardInvocableAction</invocationTargetType>
-            <isConfirmationRequired>false</isConfirmationRequired>
-            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
-            <localDeveloperName>ExtractFieldsAndValuesFromUserInput</localDeveloperName>
-            <masterLabel>Extract Fields And Values From User Input</masterLabel>
-            <progressIndicatorMessage>Preparing your changes</progressIndicatorMessage>
-            <source>EmployeeCopilot__ExtractFieldsAndValuesFromUserInput</source>
-        </localActions>
-        <localActions>
-            <fullName>GetActivitiesTimeline_179ak0000030CDx</fullName>
-            <description>Retrieve a timeline of all CRM activities associated with one record, including past and future activities.</description>
-            <developerName>GetActivitiesTimeline_179ak0000030CDx</developerName>
-            <invocationTarget>getActivitiesTimeline</invocationTarget>
-            <invocationTargetType>standardInvocableAction</invocationTargetType>
-            <isConfirmationRequired>false</isConfirmationRequired>
-            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
-            <localDeveloperName>GetActivitiesTimeline</localDeveloperName>
-            <masterLabel>Get Activities Timeline</masterLabel>
-            <progressIndicatorMessage>Retrieving activities</progressIndicatorMessage>
-            <source>EmployeeCopilot__GetActivitiesTimeline</source>
-        </localActions>
-        <localDeveloperName>GeneralCRM</localDeveloperName>
-        <masterLabel>General CRM</masterLabel>
-        <pluginType>Topic</pluginType>
-        <scope>Your job is to interact and answer questions for the user about anything Salesforce or CRM data related, combining all data retrieval functions. i.e: QueryRecords(), GetRecordDetails(), GetActivitiesTimeline(), GetActivityDetails()</scope>
-        <source>EmployeeCopilot__GeneralCRM</source>
     </localTopics>
     <localTopics>
         <fullName>Visit_and_Task_Automation_16jak000001hGXB</fullName>

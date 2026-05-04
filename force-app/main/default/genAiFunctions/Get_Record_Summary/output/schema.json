@@ -1,0 +1,180 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "affiliationCount" : {
+      "title" : "Affiliation Count",
+      "description" : "For Doctor input: number of active facility affiliations. Always 0 for Facility input.",
+      "lightning:type" : "lightning__integerType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "affiliationNames" : {
+      "title" : "Affiliation Names",
+      "description" : "Comma-separated list of affiliated facility names (Doctor input only).",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "errorMessage" : {
+      "title" : "Error Message",
+      "description" : "Populated only when status = Error or NotFound. Surface this to the user only when status is not Success.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "expenseTopRecords" : {
+      "title" : "Expense Top Records",
+      "description" : "Up to 10 most recent expenses in the window. Each entry is a single-line summary string.",
+      "maxItems" : 2000,
+      "items" : {
+        "lightning:type" : "lightning__textType"
+      },
+      "lightning:type" : "lightning__listType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "expenseTotalCount" : {
+      "title" : "Expense Total Count",
+      "description" : "Total number of Expense__c records linked (via Visit__c) to this subject within the window for the running user. Use for \"how many expenses\" questions.",
+      "lightning:type" : "lightning__integerType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "expenseTotalSpend" : {
+      "title" : "Expense Total Spend",
+      "description" : "Sum of Total_Amount_Spent__c in INR across all expenses in the window for this record + running user.",
+      "lightning:type" : "lightning__numberType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "fromDate" : {
+      "title" : "From Date",
+      "description" : "Inclusive lower bound for date filters. Null when ALL_TIME.",
+      "lightning:type" : "lightning__dateType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "recordDetail" : {
+      "title" : "Record Detail",
+      "description" : "Single-line description of the subject (specialty / city) suitable for the agent header",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "recordName" : {
+      "title" : "Record Name",
+      "description" : "Name of the doctor or facility being summarized. For doctors this is the full Person Account name; for facilities the Business Account Name.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "recordType" : {
+      "title" : "Record Type",
+      "description" : "Doctor | Facility. Indicates whether the subject is a Person Account (Doctor) or Business Account (Facility / hospital / clinic). Use this to phrase the summary correctly.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "status" : {
+      "title" : "Status",
+      "description" : "Success | NotFound | Error. Success means the subject was resolved and counts were computed (counts may still be zero). NotFound means no Account exists for the given recordId. Error means an exception occurred — check errorMessage.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "taskOpenCount" : {
+      "title" : "Task Open Count",
+      "description" : "Number of open tasks (not yet closed) within the window for this record + running user.",
+      "lightning:type" : "lightning__integerType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "taskTopRecords" : {
+      "title" : "Task Top Records",
+      "description" : "Up to 10 most recent tasks in the window. Each entry is a single-line summary string.",
+      "maxItems" : 2000,
+      "items" : {
+        "lightning:type" : "lightning__textType"
+      },
+      "lightning:type" : "lightning__listType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "taskTotalCount" : {
+      "title" : "Task Total Count",
+      "description" : "Total number of Task records owned by the running user and linked to this subject (WhatId) within the window. Includes both open and closed tasks.",
+      "lightning:type" : "lightning__integerType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "timeWindowApplied" : {
+      "title" : "Time Window Applied",
+      "description" : "Echo of which window was applied. Useful for the agent to confirm scope in its reply.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "visitLastDate" : {
+      "title" : "Visit Last Date",
+      "description" : "Date of the most recent Visit__c with this subject in the window. Null when visitTotalCount is 0. Use for \"when was my last visit\" questions.",
+      "lightning:type" : "lightning__dateType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "visitTopRecords" : {
+      "title" : "Visit Top Records",
+      "description" : "Up to 10 most recent visits in the window. Each entry is a single-line summary string.",
+      "maxItems" : 2000,
+      "items" : {
+        "lightning:type" : "lightning__textType"
+      },
+      "lightning:type" : "lightning__listType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "visitTotalCount" : {
+      "title" : "Visit Total Count",
+      "description" : "Total number of Visit__c records logged by the running user with this Doctor or Facility within the applied time window. Use this for \"how many visits\" questions even if visitTopRecords is capped at 10.",
+      "lightning:type" : "lightning__integerType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

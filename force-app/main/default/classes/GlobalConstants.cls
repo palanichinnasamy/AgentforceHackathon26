@@ -119,7 +119,7 @@ public class GlobalConstants {
 
     /* ---------------- WhatsApp default user-facing replies ------------ */
     public static final String MSG_DEFAULT_DONE         = 'Done!';
-    public static final String MSG_UNSUPPORTED_TYPE     = 'Sorry, this is an unexpected error, please try again.';
+    public static final String MSG_UNSUPPORTED_TYPE     = 'Oops! Something didn’t go as expected. Please try again.';
     public static final String MSG_AGENT_ERROR          = 'Sorry, something went wrong. Please try again.';
     public static final String MSG_SELECT_OPTION_PROMPT = '\nReply with the number.';
 }

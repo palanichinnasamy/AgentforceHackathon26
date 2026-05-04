@@ -35,7 +35,7 @@ public without sharing class WhatsAppService {
      * @param sessionId    The Agent session id from a previous turn (or null
      *                     to start a new session).
      */
-    public static AgentReply sendToAgent(String userMessage, String sessionId) {
+    public static AgentReply sendToAgent(String userMessage, String sessionId, String messageId) {
         AgentReply reply = new AgentReply();
         reply.success = false;
 
@@ -49,11 +49,17 @@ public without sharing class WhatsAppService {
                 GlobalConstants.INVOCABLE_ACTION_NAME,
                 GlobalConstants.SERVICE_AGENT_API_NAME
             );
+            
+            if (String.isNotBlank(messageId)) {
+            	userMessage = userMessage + ' (messageId:'+messageId+')';
+            }
             action.setInvocationParameter(GlobalConstants.AGENT_PARAM_USER_MSG, userMessage);
 
             if (String.isNotBlank(sessionId)) {
                 action.setInvocationParameter(GlobalConstants.AGENT_PARAM_SESSION, sessionId);
             }
+            
+            
 
             List<Invocable.Action.Result> results = action.invoke();
             if (results.isEmpty()) {

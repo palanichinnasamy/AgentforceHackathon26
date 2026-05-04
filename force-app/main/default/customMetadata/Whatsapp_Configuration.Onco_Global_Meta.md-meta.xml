@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Onco Global Meta</label>
+    <protected>false</protected>
+    <values>
+        <field>Access_Token__c</field>
+        <value xsi:type="xsd:string">EAAUght2uZA7wBRbyHqyPw8nQMDycfzZA5pfO8UcDcBblmt7pT4QPZCDCUyNaJ5u4ytU8I8nZCJDZBO05E711MfUA6fWZCKm6DChw0maWZBi4Rm7AKzqkkLHIBHSsw5Ko2G1WZB04oDVQZCfym4H7WOoiH1FPdungzZAFe2uJ2aSsQV5iiZAxGcGJZCc2h88Gu1roGAZDZD</value>
+    </values>
+    <values>
+        <field>Business_Account_ID__c</field>
+        <value xsi:type="xsd:string">1507405417674558</value>
+    </values>
+    <values>
+        <field>Phone_Number_ID__c</field>
+        <value xsi:type="xsd:string">1136894812830400</value>
+    </values>
+    <values>
+        <field>Verify_Token__c</field>
+        <value xsi:type="xsd:string">onco_global_verify_1</value>
+    </values>
+</CustomMetadata>

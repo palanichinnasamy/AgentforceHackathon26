@@ -144,6 +144,15 @@ global without sharing class WhatsAppWebhookHandler {
         if (mediaUrl != null) {
             handleMediaAsync(session.Id, mediaUrl, rawType, waMsgId, m.id, fromNumber,msgBody, resolvedUserId);
         }
+        else{
+                    // 3. Only route text messages to the agent.
+        //    Hand off to async method so DML and callouts don't clash.
+        if (GlobalConstants.MSG_TYPE_TEXT.equals(msgType) && String.isNotBlank(msgBody)) {
+            processAgentReplyAsync(session.Id, fromNumber, msgBody, resolvedUserId,m.id);
+        } else {
+            sendUnsupportedTypeReplyAsync(session.Id, fromNumber, resolvedUserId);
+        }
+        }
         
         
     }
@@ -218,8 +227,8 @@ global without sharing class WhatsAppWebhookHandler {
     /* --------------------------------------------------------------- */
 
     @future(callout=true)
-    public static void processAgentReplyAsync(Id sessionId, String fromNumber, String msgBody, Id resolvedUserId) {
-        system.debug('start');
+    public static void processAgentReplyAsync(Id sessionId, String fromNumber, String msgBody, Id resolvedUserId, id messageRecId) {
+        
         try {
             List<Whatsapp_Session__c> sessions = [
                 SELECT Id, Agent_Session_ID__c
@@ -235,7 +244,7 @@ global without sharing class WhatsAppWebhookHandler {
 
             // CALLOUT 1: Invoke Agentforce (Service Agent)
             WhatsAppService.AgentReply reply =
-                WhatsAppService.sendToAgent(msgBody, session.Agent_Session_ID__c);
+                WhatsAppService.sendToAgent(msgBody, session.Agent_Session_ID__c,messageRecId );
 
             String responseText;
             String newAgentSessionId = session.Agent_Session_ID__c;

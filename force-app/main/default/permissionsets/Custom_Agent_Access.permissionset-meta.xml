@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <agentAccesses>
+        <agentName>OncoGlobally_Sales_AI_Employee_Agent</agentName>
+        <enabled>true</enabled>
+    </agentAccesses>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Custom Agent Access</label>
+</PermissionSet>

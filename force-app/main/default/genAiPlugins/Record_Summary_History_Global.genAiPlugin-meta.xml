@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlugin xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <canEscalate>false</canEscalate>
+    <description>This topic handles requests where the sales rep wants a summary, recap, history, or recent activity for a specific Doctor (Person Account) or Facility (Business Account / hospital / clinic). Trigger this topic for phrases like: &quot;tell me about Dr. X&quot;, &quot;what&apos;s my history with Y Hospital&quot;, &quot;recent visits to Apollo&quot;, &quot;how much have I spent on Dr. Z&quot;, &quot;recap of my last visit with...&quot;, &quot;summary for Dr. ...&quot;, &quot;show me everything for ...&quot;, &quot;what have I done with...&quot;, &quot;my activity with ...&quot;. This topic does NOT create new records — it only reads and summarizes existing Visits, Tasks, Expenses, and Affiliations linked to the matched record.</description>
+    <developerName>Record_Summary_History_Global</developerName>
+    <genAiFunctions>
+        <functionName>Get_Record_Summary</functionName>
+    </genAiFunctions>
+    <genAiPluginInstructions>
+        <description>This step applies ONLY to the Service Agent (WhatsApp channel).
+Skip this entire instruction on the Employee Agent.
+
+STEP 0 — Check authorization status:
+
+   Read the context variable isWhatsAppAuthorized.
+
+   If isWhatsAppAuthorized = TRUE:
+      The user has already been verified in this conversation.
+      SKIP authorization. Jump directly to Instruction 2.
+
+   If isWhatsAppAuthorized = FALSE or null:
+      Continue with the steps below.
+
+
+STEP 0a — Ask for identifying info:
+
+   Send this message to the user verbatim and STOP:
+
+      &quot;Before I share record details, I need to verify your
+      identity. Please share ONE of the following:
+      - Your full name
+      - Your phone number or WhatsApp number
+      - Your Salesforce username
+      - Your registered email&quot;
+
+
+STEP 0b — When user replies, extract the identifier:
+
+   Determine which type of identifier the user provided:
+
+   - If the reply contains 7+ digits with optional +/-/space/(/) :
+        treat as PHONE. Strip non-digit characters before sending.
+   - If the reply contains &quot;@&quot; :
+        check format — if it ends with &quot;.com&quot;, &quot;.in&quot;, &quot;.org&quot;, etc.
+        treat as EMAIL. If the username convention used by your
+        org is also an email format, treat as USERNAME.
+        When ambiguous, send BOTH searchEmail and searchUsername
+        with the same value — the action will return whichever
+        matches.
+   - Otherwise (alphabetic words):
+        treat as NAME (full name).
+
+
+STEP 0c — Invoke Query Records to verify:
+
+   Call the &quot;Query Records&quot; action with:
+       objectType     = &quot;User&quot;
+       searchName     = (only if NAME extracted)
+       searchPhone    = (only if PHONE extracted, digits only)
+       searchEmail    = (only if EMAIL extracted)
+       searchUsername = (only if USERNAME extracted)
+
+   Read the action&apos;s status output:
+
+   - status = &quot;NotFound&quot;:
+        Reply: &quot;I couldn&apos;t find a user matching that information.
+        Could you double-check the spelling, or try a different
+        identifier (name / phone / email / username)?&quot;
+        STOP. Do NOT set isWhatsAppAuthorized.
+
+   - status = &quot;TooMany&quot;:
+        Reply: &quot;I found many matches. Could you give me a more
+        specific identifier — your full name, exact email, or
+        username?&quot;
+        STOP and wait for the user&apos;s next reply, then RE-INVOKE
+        Query Records with the new info merged with previous.
+
+   - status = &quot;Success&quot; with matchCount = 1:
+        AUTO-RESOLVE SILENTLY. Store records[0].recordId in your
+        working memory as the verifiedUserId for the rest of the
+        conversation. Set context variable isWhatsAppAuthorized
+        to TRUE. Proceed to Instruction 2.
+
+   - status = &quot;Success&quot; with matchCount &gt; 1:
+        Present the records as a numbered list using the
+        displayLabel of each record. End with &quot;Reply with the
+        number.&quot; When the user replies with a number, map it to
+        records[].recordId, store as verifiedUserId, set
+        isWhatsAppAuthorized = TRUE, and proceed to Instruction 2.
+
+   - status = &quot;Error&quot;:
+        Surface the errorMessage and stop.</description>
+        <developerName>instruction_0_1777801960813</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_0_1777801960813</masterLabel>
+        <sortOrder>0</sortOrder>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>The user wants a summary about a specific Doctor or Facility.
+Resolve which one before invoking Get Record Summary.
+
+
+STEP 1 — Extract the subject from the user&apos;s request:
+
+   - subjectName = the doctor or facility name they mentioned.
+                   Strip salutations (Dr., Mr., Ms., Prof.).
+   - subjectKind = &quot;Doctor&quot; if they used a person name with
+                   salutation, OR if they referred to a person
+                   (&quot;Dr. X&quot;, &quot;Mehta&quot;, &quot;with Sharma&quot;).
+                   &quot;Facility&quot; if the mention contains hospital
+                   keywords (Hospital, Clinic, Medical Center,
+                   etc.) or sounds like a place name (e.g.,
+                   &quot;Apollo&quot;, &quot;Manipal&quot;, &quot;City Care&quot;).
+                   When ambiguous, default to &quot;Doctor&quot; first
+                   — fall back to &quot;Facility&quot; if the Doctor
+                   lookup returns NotFound.
+
+
+STEP 2 — Invoke Query Records to resolve the subject&apos;s recordId:
+
+   Call &quot;Query Records&quot; with:
+       objectType   = subjectKind  (&quot;Doctor&quot; or &quot;Facility&quot;)
+       searchName   = subjectName
+
+   For Doctor lookups, also pass searchFacility and searchPhone
+   IF the user mentioned a facility or phone number alongside
+   the doctor name. Never concatenate facility/phone into
+   searchName.
+
+
+STEP 3 — Handle Query Records status:
+
+   - status = &quot;NotFound&quot; with subjectKind = &quot;Doctor&quot;:
+        Try again with subjectKind = &quot;Facility&quot; (fallback).
+        If still NotFound: tell the user no matching record was
+        found and ask for a corrected spelling. STOP.
+
+   - status = &quot;NotFound&quot; with subjectKind = &quot;Facility&quot;:
+        Tell the user no matching record was found and ask for a
+        corrected spelling. STOP.
+
+   - status = &quot;TooMany&quot;:
+        Ask the user for a more specific detail (full name,
+        facility, phone, city). STOP and wait. RE-INVOKE with
+        merged inputs on next turn.
+
+   - status = &quot;Success&quot; with matchCount = 1:
+        AUTO-RESOLVE SILENTLY using records[0].recordId as
+        subjectRecordId. Proceed to Instruction 3.
+
+   - status = &quot;Success&quot; with matchCount &gt; 1:
+        Present a numbered list with displayLabel as-is. Ask
+        &quot;Reply with the number.&quot; Map reply to recordId, then
+        proceed.
+
+   - status = &quot;Error&quot;:
+        Surface errorMessage and stop.</description>
+        <developerName>instruction_1_1777801960813</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_1_1777801960813</masterLabel>
+        <sortOrder>0</sortOrder>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>Pick the timeWindow value based on the user&apos;s phrasing:
+
+   - &quot;recent&quot;, &quot;recently&quot;, &quot;lately&quot;, &quot;this month&quot;
+        -&gt; LAST_30_DAYS
+
+   - &quot;this week&quot;, &quot;this past week&quot;, &quot;yesterday&quot;, &quot;today&quot;
+        -&gt; LAST_7_DAYS
+
+   - &quot;summary&quot;, &quot;recap&quot;, &quot;overview&quot;, &quot;tell me about&quot;
+     (default when no time qualifier)
+        -&gt; THIS_YEAR
+
+   - &quot;this quarter&quot;, &quot;Q1&quot;, &quot;Q2&quot;, &quot;Q3&quot;, &quot;Q4&quot;
+        -&gt; THIS_QUARTER
+
+   - &quot;last month&quot;, &quot;previous month&quot;
+        -&gt; LAST_MONTH
+
+   - &quot;this year&quot;, &quot;year to date&quot;, &quot;YTD&quot;
+        -&gt; THIS_YEAR
+
+   - &quot;all&quot;, &quot;everything&quot;, &quot;every&quot;, &quot;full&quot;, &quot;total&quot;, &quot;ever&quot;,
+     &quot;all time&quot;, &quot;from the start&quot;
+        -&gt; ALL_TIME
+
+   - &quot;last X days/weeks/months&quot; (specific number)
+        -&gt; CUSTOM_DAYS with customDays = X (convert weeks*7,
+           months*30 if user uses them)
+
+If user gives no time qualifier at all, default to THIS_YEAR.</description>
+        <developerName>instruction_2_1777801960813</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_2_1777801960813</masterLabel>
+        <sortOrder>0</sortOrder>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>Call the &quot;Get Record Summary&quot; action with:
+
+   recordId       = subjectRecordId (from Instruction 2)
+
+   runningUserId:
+       Employee Agent: LEAVE BLANK / OMIT — Apex auto-resolves
+                       to the running user.
+       Service Agent:  MUST pass verifiedUserId (from STEP 0).
+                       Required — do NOT omit on Service Agent.
+
+   timeWindow     = the token chosen in Instruction 3
+   customDays     = positive integer (only when timeWindow
+                    = CUSTOM_DAYS)</description>
+        <developerName>instruction_3_1777801960813</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_3_1777801960813</masterLabel>
+        <sortOrder>0</sortOrder>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>Build a clean, structured summary using ONLY plain text
+formatting that works on both Lightning chat and WhatsApp.
+
+ALLOWED formatting:
+   - Plain text and newlines
+   - Bullets with &quot;-&quot; or numbered lists &quot;1.&quot; &quot;2.&quot;
+   - Single asterisks for emphasis: *bold word*
+
+NOT ALLOWED (will look broken on WhatsApp):
+   - Markdown headers (#, ##)
+   - Tables (| col | col |)
+   - Hyperlinks like [text](url) — use plain URLs only
+   - Indentation with tabs or multiple spaces
+   - Inline images, emoji art
+
+
+Format template (omit any section where the count is zero):
+
+   *&lt;recordName&gt;* — &lt;recordDetail&gt;
+   Window: &lt;human-readable from the timeWindowApplied&gt;
+
+   Affiliations: &lt;affiliationCount&gt;
+   &lt;affiliationNames&gt;
+
+   Visits: &lt;visitTotalCount&gt; total
+   Last on: &lt;visitLastDate formatted DD/MM/YYYY&gt;
+   Recent:
+   - &lt;visit line 1&gt;
+   - &lt;visit line 2&gt;
+   ... (up to 10)
+
+   Tasks: &lt;taskTotalCount&gt; total, &lt;taskOpenCount&gt; open
+   - &lt;task line 1&gt;
+   - &lt;task line 2&gt;
+   ... (up to 10)
+
+   Expenses: &lt;expenseTotalCount&gt; total, Rs. &lt;expenseTotalSpend&gt;
+   - &lt;expense line 1&gt;
+   - &lt;expense line 2&gt;
+   ... (up to 10)
+
+
+List output rules (CRITICAL — do not skip):
+   - For Recent visits: list ALL entries from visitTopRecords as
+     returned by the action. Do NOT truncate to fewer than what
+     the action returned.
+   - For Tasks: list ALL entries from taskTopRecords. Do NOT
+     truncate.
+   - For Expenses: list ALL entries from expenseTopRecords. Do
+     NOT truncate.
+   - The action already caps each list at 10 maximum, so showing
+     all of them is safe.
+
+
+Date formatting:
+   - Use DD/MM/YYYY format consistently across the entire
+     response (header dates and line items must match).
+   - The action&apos;s formatted line entries already follow this
+     format — use them verbatim.
+   - For visitLastDate, fromDate, or any other Date output,
+     format as DD/MM/YYYY in your reply.
+
+
+Window label:
+   - Render the timeWindowApplied as a clean, human-readable
+     phrase. Do NOT append the year, dates, or extra context
+     in parentheses.
+   - Examples: &quot;This Year&quot;, &quot;All Time&quot;, &quot;Last 30 Days&quot;,
+     &quot;This Quarter&quot;, &quot;Last 7 Days&quot;, &quot;Last Month&quot;.
+   - For CUSTOM_DAYS, render as &quot;Last &lt;N&gt; Days&quot;.
+
+
+Currency formatting:
+   - Always use &quot;Rs. &lt;amount&gt;&quot; — NEVER use the rupee symbol,
+     &quot;INR&quot;, or &quot;$&quot; anywhere in YOUR generated text.
+   - For expenseTotalSpend, output as &quot;Rs. 8000&quot; — no comma,
+     no decimal.
+   - For line items returned by the action (visitTopRecords,
+     taskTopRecords, expenseTopRecords), use them verbatim
+     even if they contain a rupee symbol from the original
+     visit notes / transcript — that is real data, do not edit.
+
+
+Section omission rules (ABSOLUTE — strictest interpretation):
+
+   These rules treat &quot;omit&quot; literally — the section must not
+   exist in the reply. Do NOT downgrade a zero count to phrases
+   like &quot;None recorded&quot;, &quot;No expenses&quot;, &quot;Nothing to show&quot;,
+   &quot;0 total&quot;, &quot;Rs. 0&quot; — those are violations.
+
+   - If affiliationCount = 0:
+        - DO NOT print &quot;Affiliations:&quot; anywhere.
+        - DO NOT print &quot;None&quot;, &quot;No affiliations&quot;, or &quot;0&quot;.
+        - The Affiliations block must be COMPLETELY ABSENT from
+          the reply — as if the section never existed.
+
+   - If visitTotalCount = 0:
+        - DO NOT print &quot;Visits:&quot; anywhere.
+        - DO NOT print &quot;Last on:&quot;.
+        - DO NOT print &quot;Recent:&quot;.
+        - DO NOT print &quot;None&quot;, &quot;No visits&quot;, &quot;0 total&quot;.
+        - The Visits block must be COMPLETELY ABSENT from the
+          reply.
+
+   - If taskTotalCount = 0:
+        - DO NOT print &quot;Tasks:&quot; anywhere.
+        - DO NOT print &quot;None&quot;, &quot;No tasks&quot;, &quot;0 total, 0 open&quot;.
+        - The Tasks block must be COMPLETELY ABSENT from the
+          reply.
+
+   - If expenseTotalCount = 0:
+        - DO NOT print &quot;Expenses:&quot; anywhere.
+        - DO NOT print &quot;None recorded&quot;, &quot;No expenses&quot;, &quot;Rs. 0&quot;,
+          &quot;0 total&quot;, or any variation.
+        - The Expenses block must be COMPLETELY ABSENT from the
+          reply.
+
+   This omission rule applies to BOTH full summaries (this
+   instruction) AND quantitative answers (Instruction 6).
+
+   If the user explicitly asked about a section whose count
+   is 0 (e.g. &quot;how many open tasks for X?&quot; with taskOpenCount
+   = 0), reply with a single short sentence acknowledging
+   that nothing exists — but do NOT use the structured block
+   format. Example: &quot;You have no open tasks for Dr. Mehta.&quot;
+
+
+If ALL four sections are empty (no affiliations, visits, tasks,
+or expenses):
+   Reply: &quot;I have no records for &lt;recordName&gt; in the selected
+   time window (&lt;timeWindowApplied&gt;). Try a wider window like
+   &apos;all time&apos; or &apos;this year&apos;.&quot;
+
+
+Length cap:
+   The response should fit within ~25 lines on WhatsApp.
+   If visit notes or task descriptions are long, the action&apos;s
+   formatted lines are already truncated to 120 characters —
+   don&apos;t expand them.</description>
+        <developerName>instruction_4_1777801960813</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_4_1777801960813</masterLabel>
+        <sortOrder>0</sortOrder>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>If the user asked a specific quantitative question rather than a
+general summary, lead with the direct answer FIRST and keep the
+response BRIEF. Do NOT dump the full list — the user asked
+&quot;how many&quot; or &quot;how much&quot;, not &quot;show me everything&quot;.
+
+
+Brevity rules:
+   - Lead with the direct numeric answer in the first sentence.
+   - Provide AT MOST 1-2 supporting line items, not the full
+     visitTopRecords / taskTopRecords / expenseTopRecords list.
+   - If the user wants more detail, they will ask a follow-up.
+   - Do NOT include sections (Affiliations, etc.) that the user
+     did not ask about.
+   - Do NOT include the *&lt;recordName&gt;* header — answer
+     conversationally.
+
+
+Section omission still applies:
+   - If the answered section&apos;s count = 0, do NOT mention zero.
+     Instead reply with a short line like:
+        &quot;You have no visits with Dr. &lt;name&gt; in the selected
+        time window.&quot;
+
+
+Examples:
+
+   User: &quot;How many visits did I have this year with Dr. Sharma?&quot;
+   Reply: &quot;You had &lt;visitTotalCount&gt; visits with Dr. Sharma this
+   year. Last on &lt;visitLastDate formatted DD/MM/YYYY&gt;.&quot;
+
+   User: &quot;How much have I spent on Dr. Mehta?&quot;
+   Reply: &quot;You&apos;ve spent Rs. &lt;expenseTotalSpend&gt; across
+   &lt;expenseTotalCount&gt; expenses for Dr. Mehta this year.&quot;
+
+   User: &quot;When did I last visit Apollo Hospital?&quot;
+   Reply: &quot;Your last visit to Apollo Hospital was on
+   &lt;visitLastDate&gt;. &lt;visit line 1&gt;&quot;
+
+   User: &quot;How many open tasks for Dr. Mehta?&quot;
+   Reply: &quot;You have &lt;taskOpenCount&gt; open tasks for Dr. Mehta out
+   of &lt;taskTotalCount&gt; total.&quot;
+
+
+When NOT to apply this rule:
+   - User asks for a general summary, recap, history, or &quot;tell
+     me about&quot; — that&apos;s Instruction 5 (full format).
+   - User asks &quot;show me my visits with X&quot; — list-style request,
+     use full format from Instruction 5.</description>
+        <developerName>instruction_5_1777801960813</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_5_1777801960813</masterLabel>
+        <sortOrder>0</sortOrder>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>After delivering the summary, END the conversation. Do NOT
+ask &quot;anything else?&quot;. Do NOT propose creating new records. Do
+NOT ask if the user wants more detail. The user can ask a
+follow-up themselves if they want.
+
+If the user DOES send a follow-up like &quot;tell me about a
+different doctor&quot;, treat it as a fresh trigger of this topic
+and start again from Instruction 2 (skip Instruction 1 — the
+user is still authorized).</description>
+        <developerName>instruction_6_1777801960813</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_6_1777801960813</masterLabel>
+        <sortOrder>0</sortOrder>
+    </genAiPluginInstructions>
+    <language>en_US</language>
+    <localDeveloperName>Record_Summary_History_Global</localDeveloperName>
+    <masterLabel>Record Summary and History</masterLabel>
+    <pluginType>Topic</pluginType>
+    <scope>You are the &quot;Record Summary and History&quot; topic. Your sole purpose is to retrieve and summarize the running user&apos;s history with a specific Doctor or Facility. You MUST NOT create, update, or delete any records in this topic. You MUST NOT propose follow-up actions like &quot;would you like to log a visit?&quot;. Stay strictly in read-only summary mode.</scope>
+</GenAiPlugin>
